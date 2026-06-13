@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Zenith Wellness | Mindful Harmony</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="fontawesome/fontawesome-free-6.0.0-web/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* LIGHT MODE (default) */
+    :root {
+      --bg-body: #fefaf5;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --text-primary: #1e2a2e;
+      --text-secondary: #2c3e2f;
+      --accent: #9b7b5c;
+      --accent-light: #e3cfbc;
+      --border: #e6dfd5;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --accent-text: #ffffff;
+      --navbar-bg: #fffbf7;
+      --footer-bg: #f2efe9;
+      --link-hover: #7f5e42;
+      --active-link: #9b7b5c;
+    }
+
+    body.dark-mode {
+      --bg-body: #000000;
+      --bg-surface: #121212;
+      --bg-card: #1e1e1e;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --accent: #e0b68b;
+      --accent-light: #8e735b;
+      --border: #3e3e3e;
+      --accent-text: #121212;
+      --navbar-bg: #0a0a0a;
+      --footer-bg: #050505;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
+      --link-hover: #f3cd9b;
+      --active-link: #e0b68b;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* STICKY NAVBAR - one line flex */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navbar-bg);
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+    }
+
+    .nav-container {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 1rem;
+      position: relative;
+    }
+
+    /* Logo area */
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      white-space: nowrap;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--accent-text);
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(155, 123, 92, 0.2);
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Hamburger button (right side on mobile) */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-primary);
+      order: 3;
+      z-index: 1002;
+    }
+
+    /* Desktop navigation wrapper */
+    .nav-menu {
+      display: contents;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.3rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-self: center;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      padding: 0.5rem 0;
+      transition: color 0.2s, border-bottom 0.2s;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .nav-link.dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.35rem);
+      left: 0;
+      min-width: 10rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      padding: 0.45rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 1001;
+    }
+
+    .dropdown-menu.show {
+      display: flex;
+    }
+
+    .dropdown-link {
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-link:hover {
+      background: var(--accent-light);
+      color: var(--link-hover);
+    }
+
+    .nav-links li a:hover {
+      color: var(--link-hover);
+    }
+
+    .nav-links li a.active {
+      color: var(--active-link);
+      border-bottom: 2px solid var(--active-link);
+      font-weight: 600;
+    }
+
+    /* action buttons: Dark mode, RTL, Login (register removed) */
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 0.3rem;
+      justify-self: end;
+    }
+
+    .icon-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #1e2a2e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 5px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--accent);
+      transition: all 0.2s;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--accent-text);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* ========== ENHANCED FOOTER STYLES (same color, font, variables) ========== */
+    .site-footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 1.2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    /* Brand column (logo identical to navbar) */
+    .footer-brand .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+
+    .footer-brand .logo-mark {
+      width: 42px;
+      height: 42px;
+      font-size: 1rem;
+    }
+
+    .footer-brand .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .footer-description {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0.8rem 0 1rem 0;
+    }
+
+    .footer-heading {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1.1rem;
+      letter-spacing: -0.2px;
+      color: var(--text-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-heading:after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .footer-links-list li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links-list a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links-list a i {
+      font-size: 0.7rem;
+      width: 1rem;
+      color: var(--accent);
+    }
+
+    .footer-links-list a:hover {
+      color: var(--link-hover);
+      transform: translateX(3px);
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-info-item i {
+      width: 1.2rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .contact-info-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .contact-info-item a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    .social-links-footer {
+      display: flex;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .social-links-footer a {
+      background: rgba(155, 123, 92, 0.15);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+
+    .social-links-footer a:hover {
+      background: var(--accent);
+      color: var(--accent-text);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-bottom .copyright {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom .legal-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom .legal-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-bottom .legal-links a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    /* responsive */
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .footer-container {
+        padding: 2rem 1.2rem 1rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+      .legal-links {
+        justify-content: center;
+      }
+    }
+
+    /* RTL adjustments */
+    html[dir="rtl"] .footer-heading:after {
+      left: auto;
+      right: 0;
+    }
+    html[dir="rtl"] .footer-links-list a i {
+      transform: scaleX(-1);
+    }
+    html[dir="rtl"] .footer-links-list a:hover {
+      transform: translateX(-3px);
+    }
+
+    /* Mobile navbar remains untouched */
+    @media (max-width: 1024px) {
+      .navbar {
+        padding: 0.7rem 1.2rem;
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
+      .hamburger {
+        display: block;
+      }
+      .dropdown-menu {
+        position: static;
+        margin-top: 0.35rem;
+        box-shadow: none;
+        border-radius: 12px;
+      }
+      .nav-menu {
+        display: flex;
+        position: fixed;
+        top: 72px;
+        right: -100%;
+        width: 78%;
+        max-width: 340px;
+        height: calc(100vh - 72px);
+        background: var(--navbar-bg);
+        backdrop-filter: blur(8px);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 2rem 1.8rem;
+        transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        box-shadow: -8px 0 28px rgba(0, 0, 0, 0.25);
+        z-index: 999;
+        border-left: 1px solid var(--border);
+        gap: 2rem;
+        overflow-y: auto;
+      }
+      .nav-menu.active {
+        right: 0;
+      }
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1.4rem;
+      }
+      .nav-links li {
+        width: 100%;
+      }
+      .nav-links li a {
+        white-space: normal;
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        padding: 0.3rem 0;
+      }
+      .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+        margin-left: 0;
+      }
+      .action-buttons .icon-btn,
+      .action-buttons .btn-outline {
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* CONTACT UNIQUE DESIGN */
+    .hero-contact {
+      position: relative;
+      padding: 8rem 2rem;
+      text-align: center;
+      background: url('images/new_hero_bg.png') center/center no-repeat;
+      color: white;
+      border-bottom: 4px dashed var(--accent);
+    }
+    .hero-contact::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at center, rgba(30, 42, 46, 0.5) 0%, rgba(30, 42, 46, 0.9) 100%);
+    }
+    .hero-contact-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-contact-title {
+      font-size: 4.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .hero-contact-subtitle {
+      font-size: 1.25rem;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Contact Methods Grid */
+    .contact-methods {
+      padding: 5rem 2rem;
+      background: var(--bg-surface);
+      margin-top: -3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .methods-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .method-card {
+      background: var(--bg-body);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+      border-top: 5px solid var(--accent);
+      transition: transform 0.3s;
+    }
+    .method-card:hover { transform: translateY(-8px); }
+    .mc-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(155, 123, 92, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: var(--accent);
+    }
+    .mc-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary); }
+    .mc-text { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.5; }
+    .mc-action {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .mc-action:hover { border-color: var(--accent); }
+
+    /* The Interactive Form Section */
+    .contact-form-section {
+      padding: 6rem 2rem;
+      background: var(--bg-body);
+      display: flex;
+      justify-content: center;
+    }
+    .form-canvas {
+      width: 100%;
+      max-width: 1200px;
+      background: var(--bg-surface);
+      display: flex;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+    .fc-left {
+      flex: 1;
+      padding: 4rem;
+      background: var(--text-primary);
+      color: var(--bg-body);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .fc-left h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--bg-body); }
+    .fc-left p { opacity: 0.8; line-height: 1.6; margin-bottom: 2rem; }
+    .fc-quote {
+      font-style: italic;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      opacity: 0.9;
+    }
+    .fc-right {
+      flex: 1.5;
+      padding: 4rem;
+    }
+    .c-form-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .c-form-col { flex: 1; }
+    .c-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .c-input {
+      width: 100%;
+      padding: 0;
+      border: none;
+      border-bottom: 2px solid var(--border);
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      padding-bottom: 0.5rem;
+      transition: border-color 0.3s;
+    }
+    .c-input:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+    }
+    .c-submit {
+      background: var(--accent);
+      color: var(--accent-text);
+      border: none;
+      padding: 1.2rem 3rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: all 0.3s, transform 0.2s;
+    }
+    .c-submit:hover {
+      background: var(--text-primary);
+      color: var(--bg-surface);
+      transform: translateY(-2px);
+    }
+    @media (max-width: 900px) {
+      .form-canvas { flex-direction: column; }
+      .c-form-row { flex-direction: column; gap: 1.5rem; }
+      .fc-left, .fc-right { padding: 2.5rem; }
+    }
+
+    /* HQ Location */
+    .hq-section {
+      padding: 0;
+      background: var(--bg-surface);
+      position: relative;
+    }
+    .hq-wrapper {
+      display: flex;
+      align-items: stretch;
+      min-height: 400px;
+    }
+    .hq-info {
+      flex: 1;
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hq-info h3 { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-primary); }
+    .hq-detail { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .hq-detail i { font-size: 1.5rem; color: var(--accent); margin-top: 0.2rem; }
+    .hq-detail div { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; }
+    .hq-map {
+      flex: 1;
+      background: url('images/hero_bg_1524661135-423995f22d0b.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    .map-pin {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px; height: 50px;
+      background: var(--accent);
+      border-radius: 50% 50% 50% 0;
+      transform-origin: center;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    .map-pin::after {
+      content: '';
+      width: 20px; height: 20px;
+      background: white;
+      border-radius: 50%;
+    }
+    @media (max-width: 800px) {
+      .hq-wrapper { flex-direction: column; }
+      .hq-map { min-height: 300px; }
+      .hq-info { padding: 3rem 2rem; }
+    }
+
+    /* Department Directory */
+    .directory-section {
+      padding: 6rem 2rem;
+      background: var(--bg-body);
+    }
+    .dir-header { text-align: center; margin-bottom: 4rem; }
+    .dir-header h2 { font-size: 2.2rem; color: var(--text-primary); }
+    .dir-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .dir-item {
+      background: var(--bg-surface);
+      padding: 1.5rem 2rem;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+    .dir-item:hover { border-color: var(--accent); }
+    .dir-left h4 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .dir-left p { font-size: 0.9rem; color: var(--text-secondary); }
+    .dir-right { font-weight: 700; color: var(--accent); }
+    @media (max-width: 600px) {
+      .dir-item { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+
+    /* Operating Hours */
+    .hours-section {
+      padding: 5rem 2rem;
+      background: var(--text-primary);
+      color: var(--bg-body);
+      text-align: center;
+    }
+    .hours-title { font-size: 2rem; margin-bottom: 3rem; color: var(--bg-body); }
+    .hours-flex {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .hour-block h4 { color: var(--accent-light); font-size: 1.1rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+    .hour-block p { font-size: 1.3rem; font-weight: 300; }
+
+    /* Social Community */
+    .social-section {
+      padding: 6rem 2rem;
+      background: var(--bg-surface);
+      text-align: center;
+    }
+    .social-section h2 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--text-primary); }
+    .social-section p { color: var(--text-secondary); margin-bottom: 3rem; }
+    .social-circles {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .s-circle {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .s-circle:hover {
+      background: var(--accent);
+      color: var(--accent-text);
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    /* Urgent Banner */
+    .urgent-banner {
+      background: #c0392b;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .urgent-banner h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: white; }
+    .urgent-banner p { font-size: 0.95rem; opacity: 0.9; }
+    .urgent-banner a { color: white; font-weight: 700; text-decoration: underline; }
+  </style>
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+<header class="navbar" id="mainNavbar">
+  <div class="nav-container">
+    <a href="#" class="logo" id="logoLink">
+      <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+      <span class="logo-text">Zenith</span>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links" id="navLinks">
+        <li>
+          <a href="index.html" class="nav-link dropdown-toggle" id="homeDropdownToggle" aria-expanded="false">
+            Home <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu" id="homeDropdownMenu">
+            <a href="index.html" class="dropdown-link">Home 1</a>
+            <a href="home2.html" class="dropdown-link">Home 2</a>
+          </div>
+        </li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="therapists.html" class="nav-link">Therapists</a></li>
+        <li><a href="corporate events.html" class="nav-link">Corporate Events</a></li>
+        <li><a href="book now.html" class="nav-link">Book Now</a></li>
+        <li><a href="gift card.html" class="nav-link">Gift Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="action-buttons">
+        <button class="icon-btn" id="darkModeToggle"><i class="fas fa-moon"></i> <span>Dark</span></button>
+        <button class="icon-btn" id="rtlToggleBtn"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="btn-outline" id="loginBtn" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> Login</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Hero Section -->
+  <section class="hero-contact">
+    <div class="hero-contact-content">
+      <h1 class="hero-contact-title">Let's Connect</h1>
+      <p class="hero-contact-subtitle">Whether you have a question about our services, need help booking, or just want to say hello, our team is here for you.</p>
+    </div>
+  </section>
+
+  <!-- 2. Contact Methods Grid -->
+  <section class="contact-methods">
+    <div class="methods-container">
+      <div class="method-card">
+        <div class="mc-icon"><i class="fas fa-phone-volume"></i></div>
+        <h3 class="mc-title">Call Us</h3>
+        <p class="mc-text">Speak directly with our concierge team. We're available during business hours to.</p>
+        <a href="tel:15551234567" class="mc-action">+1 (555) 123-4567</a>
+      </div>
+      <div class="method-card">
+        <div class="mc-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <h3 class="mc-title">Email Us</h3>
+        <p class="mc-text">Send us an email anytime. We aim to respond to all inquiries within 2 hours.</p>
+        <a href="mailto:hello@zenithwellness.com" class="mc-action">hello@zenithwellness.com</a>
+      </div>
+      <div class="method-card">
+        <div class="mc-icon"><i class="fas fa-comments"></i></div>
+        <h3 class="mc-title">Live Chat</h3>
+        <p class="mc-text">Need a quick answer? Use our live chat feature for immediate assistance from.</p>
+        <a href="#" class="mc-action" onclick="alert('Live chat widget opened!'); return false;">Start Chat</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The Interactive Form Section -->
+  <section class="contact-form-section">
+    <div class="form-canvas">
+      <div class="fc-left">
+        <div>
+          <h2>Send a Message</h2>
+          <p>Fill out the form with your details and inquiry, and the right department will get back to you shortly.</p>
+        </div>
+        <div style="margin: 2rem 0; text-align: center;">
+          <img src="images/service_one.png" alt="Relaxing Massage" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 16px; box-shadow: var(--shadow-sm);">
+        </div>
+        <div class="fc-quote">
+          "The best customer service I've ever experienced in the wellness industry. Fast, polite, and extremely helpful." <br><br>— Sarah M.
+        </div>
+      </div>
+      <div class="fc-right">
+        <form>
+          <div class="c-form-row">
+            <div class="c-form-col">
+              <label class="c-label">First Name</label>
+              <input type="text" class="c-input" required>
+            </div>
+            <div class="c-form-col">
+              <label class="c-label">Last Name</label>
+              <input type="text" class="c-input" required>
+            </div>
+          </div>
+          <div class="c-form-row">
+            <div class="c-form-col">
+              <label class="c-label">Email Address</label>
+              <input type="email" class="c-input" required>
+            </div>
+            <div class="c-form-col">
+              <label class="c-label">Phone Number</label>
+              <input type="tel" class="c-input">
+            </div>
+          </div>
+          <div class="c-form-row">
+            <div class="c-form-col">
+              <label class="c-label">Topic of Inquiry</label>
+              <select class="c-input" style="appearance: none; cursor: pointer;">
+                <option>General Support</option>
+                <option>Booking Issue</option>
+                <option>Corporate Events</option>
+                <option>Feedback/Review</option>
+              </select>
+            </div>
+          </div>
+          <div class="c-form-row">
+            <div class="c-form-col">
+              <label class="c-label">Your Message</label>
+              <textarea class="c-input" rows="4" style="resize: vertical;"></textarea>
+            </div>
+          </div>
+          <button type="button" class="c-submit" onclick="alert('Message Sent successfully!')">Submit Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. HQ Location -->
+  <section class="hq-section">
+    <div class="hq-wrapper">
+      <div class="hq-info">
+        <h3>Our Headquarters</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">While our therapists are mobile and travel to you, our support and administrative team operates from our central hub.</p>
+        <div class="hq-detail">
+          <i class="fas fa-building"></i>
+          <div>
+            <strong>Zenith Wellness Group</strong><br>
+            450 Relaxation Blvd, Suite 200<br>
+            Metropolis, NY 10001
+          </div>
+        </div>
+        <div class="hq-detail">
+          <i class="fas fa-parking"></i>
+          <div>
+            <strong>Visiting us?</strong><br>
+            Guest parking is available in the rear structure. Please check in at the main lobby desk.
+          </div>
+        </div>
+      </div>
+      <div class="hq-map">
+        <div class="map-pin"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Department Directory -->
+  <section class="directory-section">
+    <div class="dir-header">
+      <h2>Who to Contact</h2>
+      <p style="color: var(--text-secondary); margin-top: 0.5rem;">Direct lines to our specialized teams.</p>
+    </div>
+    <div class="dir-list">
+      <div class="dir-item">
+        <div class="dir-left">
+          <h4>General Support & Booking</h4>
+          <p>For help with standard appointments and account issues.</p>
+        </div>
+        <div class="dir-right">support@zenithwellness.com</div>
+      </div>
+      <div class="dir-item">
+        <div class="dir-left">
+          <h4>Corporate Events Team</h4>
+          <p>For booking office chair massages and bulk requests.</p>
+        </div>
+        <div class="dir-right">corporate@zenithwellness.com</div>
+      </div>
+      <div class="dir-item">
+        <div class="dir-left">
+          <h4>Therapist Careers</h4>
+          <p>For independent licensed massage therapists looking to join our network.</p>
+        </div>
+        <div class="dir-right">careers@zenithwellness.com</div>
+      </div>
+      <div class="dir-item">
+        <div class="dir-left">
+          <h4>Press & Media</h4>
+          <p>For media inquiries, partnerships, and PR.</p>
+        </div>
+        <div class="dir-right">press@zenithwellness.com</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Operating Hours -->
+  <section class="hours-section">
+    <h2 class="hours-title">Support Hours</h2>
+    <div class="hours-flex">
+      <div class="hour-block">
+        <h4>Monday - Friday</h4>
+        <p>8:00 AM - 8:00 PM</p>
+      </div>
+      <div class="hour-block">
+        <h4>Saturday</h4>
+        <p>9:00 AM - 6:00 PM</p>
+      </div>
+      <div class="hour-block">
+        <h4>Sunday</h4>
+        <p>10:00 AM - 4:00 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Social Community -->
+  <section class="social-section">
+    <h2>Join Our Community</h2>
+    <p>Follow us for daily wellness tips, therapist spotlights, and exclusive discounts.</p>
+    <div class="social-circles">
+      <a href="#" class="s-circle"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="s-circle"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="s-circle"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="s-circle"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </section>
+
+  <!-- 8. Urgent Banner -->
+  <section class="urgent-banner">
+    <h3><i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i> Urgent Rescheduling?</h3>
+    <p>If you need to cancel or change an appointment within 24 hours of the start time, please <strong>DO NOT</strong> email. <a href="tel:15551234567">Call us immediately</a> to avoid late fees.</p>
+  </section>
+</main>
+
+<!-- ========== ENHANCED FOOTER SAME COLOR, FONT, NAVBAR LOGO INCLUDED ========== -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <!-- Column 1: Brand + Logo (identical to navbar) -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo" id="footerLogoLink">
+          <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+          <span class="logo-text">Zenith</span>
+        </a>
+        <p class="footer-description">
+          Mindful harmony through therapeutic touch. Mobile massage & chair massage specialists bringing relaxation to your doorstep — corporate wellness, events, or private sessions.
+        </p>
+        <div class="social-links-footer">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links (wellness & massage) -->
+      <div>
+        <h4 class="footer-heading">Explore</h4>
+        <ul class="footer-links-list">
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Mobile Massage</a></li>
+          <li><a href="corporate events.html"><i class="fas fa-chevron-right"></i> Chair Massage Events</a></li>
+          <li><a href="therapists.html"><i class="fas fa-chevron-right"></i> Our Therapists</a></li>
+          <li><a href="book now.html"><i class="fas fa-chevron-right"></i> Book a Session</a></li>
+          <li><a href="gift card.html"><i class="fas fa-chevron-right"></i> Gift Cards</a></li>
+          <li><a href="#pricing"><i class="fas fa-chevron-right"></i> Pricing & Packages</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact & Support -->
+      <div>
+        <h4 class="footer-heading">Connect</h4>
+        <div class="contact-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Serving Greater Metro & Surroundings</span>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+15551234567">+1 (555) 123-4567</a>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:hello@zenithwellness.com">hello@zenithwellness.com</a>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon-Sat: 9am – 8pm | Sun: 10am – 6pm</span>
+        </div>
+      </div>
+
+      <!-- Column 4: Corporate & Chair Massage Spotlight -->
+      <div>
+        <h4 class="footer-heading">On-site Services</h4>
+        <ul class="footer-links-list">
+          <li><a href="corporate events.html"><i class="fas fa-building"></i> Corporate Chair Massage</a></li>
+          <li><a href="#events"><i class="fas fa-calendar-alt"></i> Event Wellness</a></li>
+          <li><a href="#mobile"><i class="fas fa-truck"></i> Mobile Table Massage</a></li>
+          <li><a href="#wellness"><i class="fas fa-hand-spa"></i> Stress Relief Programs</a></li>
+        </ul>
+        <div style="margin-top: 1rem; background: rgba(155, 123, 92, 0.12); padding: 0.6rem; border-radius: 16px; font-size: 0.8rem;">
+          <i class="fas fa-chair"></i> <strong>Chair massage for offices:</strong> boost morale & reduce tension — ask about corporate rates.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        <i class="far fa-copyright"></i> <span id="currentYear"></span> Zenith Wellness — Mindful Harmony. All rights reserved.
+      </div>
+      <div class="legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="back-to-top">
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+          <i class="fas fa-arrow-up"></i> Back to top
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // DOM elements
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const homeDropdownToggle = document.getElementById('homeDropdownToggle');
+    const homeDropdownMenu = document.getElementById('homeDropdownMenu');
+    const dropdownLinks = document.querySelectorAll('.dropdown-link');
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggleBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoLink = document.getElementById('logoLink');
+    const footerLogoLink = document.getElementById('footerLogoLink');
+
+    // Helper: close mobile menu (right side)
+    function closeMobileMenu() {
+      if (window.innerWidth <= 1024 && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+      }
+    }
+
+    function closeHomeDropdown() {
+      if (homeDropdownMenu) {
+        homeDropdownMenu.classList.remove('show');
+      }
+      if (homeDropdownToggle) {
+        homeDropdownToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Smooth scroll for all internal links (including footer links)
+    const allInternalLinks = document.querySelectorAll('a[href^="#"]');
+    allInternalLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== "#" && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElem = document.getElementById(targetId);
+          if (targetElem) {
+            targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            closeMobileMenu();
+            closeHomeDropdown();
+          }
+        }
+      });
+    });
+
+    // Logo clicks scroll to top
+    if (logoLink) {
+      logoLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeMobileMenu();
+        navLinks.forEach(link => link.classList.remove('active'));
+      });
+    }
+    if (footerLogoLink) {
+      footerLogoLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Home dropdown toggle
+    if (homeDropdownToggle) {
+      homeDropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = homeDropdownMenu.classList.toggle('show');
+        homeDropdownToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (homeDropdownMenu && !homeDropdownMenu.contains(e.target) && !homeDropdownToggle.contains(e.target)) {
+        closeHomeDropdown();
+      }
+      if (window.innerWidth <= 1024 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // Hamburger menu
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    // Dark mode
+    const isDark = localStorage.getItem('darkMode') === 'enabled';
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+      updateDarkButton(true);
+    } else {
+      updateDarkButton(false);
+    }
+    function updateDarkButton(darkActive) {
+      if (!darkToggle) return;
+      const icon = darkToggle.querySelector('i');
+      const span = darkToggle.querySelector('span');
+      if (darkActive) {
+        icon.className = 'fas fa-sun';
+        span.innerText = 'Light';
+      } else {
+        icon.className = 'fas fa-moon';
+        span.innerText = 'Dark';
+      }
+    }
+    if (darkToggle) {
+      darkToggle.addEventListener('click', () => {
+        const nowDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', nowDark ? 'enabled' : 'disabled');
+        updateDarkButton(nowDark);
+      });
+    }
+
+    // RTL functionality
+    let isRTL = localStorage.getItem('rtlMode') === 'enabled';
+    function applyRTL(rtlActive) {
+      if (rtlActive) {
+        document.documentElement.setAttribute('dir', 'rtl');
+        if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> LTR';
+      } else {
+        document.documentElement.setAttribute('dir', 'ltr');
+        if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> RTL';
+      }
+      localStorage.setItem('rtlMode', rtlActive ? 'enabled' : 'disabled');
+    }
+    applyRTL(isRTL);
+    if (rtlToggle) {
+      rtlToggle.addEventListener('click', () => {
+        isRTL = !isRTL;
+        applyRTL(isRTL);
+      });
+    }
+
+    // Login button demo
+    
+
+    // Set current year in footer
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    // Back to top smooth
+    const backToTop = document.querySelector('.back-to-top a');
+    if (backToTop) {
+      backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  })();
+</script>
+
+<script>
+    // --- Added for dynamic active state ---
+    const currentPath = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
+    document.querySelectorAll('.nav-link, .dropdown-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && href.includes(currentPath)) {
+        link.classList.add('active');
+        const parentLi = link.closest('li');
+        if (parentLi) {
+          const toggle = parentLi.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        }
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    // --- End dynamic active state ---
+</script>
+</body>
+</html>

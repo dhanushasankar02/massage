@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Zenith Wellness | Mobile & Chair Massage Experts</title>
+  <!-- Google Fonts & Font Awesome 6 -->
+  <link rel="stylesheet" href="fontawesome/fontawesome-free-6.0.0-web/css/all.min.css">
+  <style>
+    /* ---------- GLOBAL + VARIABLES (from first navbar/footer, extended for dark mode) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    :root {
+      --bg-body: #fefaf5;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --text-primary: #1e2a2e;
+      --text-secondary: #2c3e2f;
+      --accent: #9b7b5c;
+      --accent-light: #e3cfbc;
+      --border: #e6dfd5;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --accent-text: #ffffff;
+      --navbar-bg: #fffbf7;
+      --footer-bg: #f2efe9;
+      --link-hover: #7f5e42;
+      --active-link: #9b7b5c;
+      --card-radius: 28px;
+    }
+
+    body.dark-mode {
+      --bg-body: #000000;
+      --bg-surface: #121212;
+      --bg-card: #1e1e1e;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --accent: #e0b68b;
+      --accent-light: #8e735b;
+      --border: #3e3e3e;
+      --accent-text: #121212;
+      --navbar-bg: #0a0a0a;
+      --footer-bg: #050505;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
+      --link-hover: #f3cd9b;
+      --active-link: #e0b68b;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------- ORIGINAL NAVBAR (exactly as first code) ---------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navbar-bg);
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+    }
+    .nav-container {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 1rem;
+      position: relative;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      white-space: nowrap;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--accent-text);
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(155, 123, 92, 0.2);
+      flex-shrink: 0;
+    }
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-primary);
+      order: 3;
+      z-index: 1002;
+    }
+    .nav-menu {
+      display: contents;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.3rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-self: center;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      padding: 0.5rem 0;
+      transition: color 0.2s, border-bottom 0.2s;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      position: relative;
+    }
+    .nav-link.dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.35rem);
+      left: 0;
+      min-width: 10rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      padding: 0.45rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 1001;
+    }
+    .dropdown-menu.show {
+      display: flex;
+    }
+    .dropdown-link {
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .dropdown-link:hover {
+      background: var(--accent-light);
+      color: var(--link-hover);
+    }
+    .nav-links li a:hover {
+      color: var(--link-hover);
+    }
+    .nav-links li a.active {
+      color: var(--active-link);
+      border-bottom: 2px solid var(--active-link);
+      font-weight: 600;
+    }
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 0.3rem;
+      justify-self: end;
+    }
+    .icon-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 5px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--accent);
+      transition: all 0.2s;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--accent-text);
+    }
+
+    /* ---------- MAIN CONTENT STYLES (from second doc, adapted for dark mode) ---------- */
+    main {
+      flex: 1;
+    }
+    section {
+      position: relative;
+      padding: 5rem 2rem;
+      overflow-x: hidden;
+      scroll-margin-top: 5rem;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      position: relative;
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+    .section-subhead {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    /* background variations */
+    .bg-light { background-color: #ffffff; }
+    .bg-warm { background-color: #fff8f3; }
+    .bg-soft { background-color: #f6efe9; }
+    .bg-stone { background-color: #faf4ef; }
+    body.dark-mode .bg-light { background-color: #1e2a2a; }
+    body.dark-mode .bg-warm { background-color: #242c2c; }
+    body.dark-mode .bg-soft { background-color: #1f2825; }
+    body.dark-mode .bg-stone { background-color: #1b2422; }
+
+    /* hero section */
+    .hero {
+      min-height: 100vh;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.6)), url('./images/bg3.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      background-attachment: fixed;
+      color: white;
+      padding: 0 1.5rem;
+    }
+    .hero-content { max-width: 900px; }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-group { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: white;
+      color: #2c241f;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      border: none;
+    }
+    .btn-primary {
+      background: #c17b5c;
+      color: white;
+      box-shadow: 0 6px 14px rgba(193,123,92,0.3);
+    }
+    .btn-primary:hover { background: #a56245; transform: translateY(-3px); }
+    .btn-outline-light {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    .btn-outline-light:hover { background: white; color: #2c241f; transform: translateY(-3px); }
+
+    /* cards & grids */
+    .features-grid, .pricing-grid, .testimonial-grid, .techniques-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .card, .price-card, .testimonial-card, .technique-card {
+      background: var(--bg-card);
+      border-radius: var(--card-radius);
+      transition: transform 0.2s ease, box-shadow 0.2s, background-color 0.2s;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .card { flex: 1 1 280px; padding: 2rem 1.8rem; text-align: center; }
+    .card i, .technique-card i { font-size: 2.6rem; color: var(--accent); margin-bottom: 1.2rem; }
+    .card h3, .technique-card h3 { font-size: 1.6rem; margin-bottom: 0.75rem; font-weight: 700; }
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .step-item {
+      background: var(--bg-card);
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      flex: 1 1 200px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .step-num {
+      background: var(--accent);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent-text);
+      margin: 0 auto 1rem auto;
+    }
+    .price-card { flex: 1 1 280px; overflow: hidden; display: flex; flex-direction: column; }
+    .price-header {
+      background: rgba(193, 123, 92, 0.12);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .price-header h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .price { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+    .price-desc { padding: 1.5rem; text-align: left; display: flex; flex-direction: column; flex-grow: 1; }
+    .price-desc ul { list-style: none; margin-bottom: 1.5rem; }
+    .price-desc li { margin: 0.8rem 0; display: flex; align-items: flex-start; justify-content: flex-start; gap: 0.8rem; }
+    .testimonial-card { flex: 1 1 320px; padding: 2rem; text-align: center; }
+    .testimonial-card i.fa-quote-left { color: var(--accent); font-size: 1.7rem; opacity: 0.6; margin-bottom: 1rem; }
+    .rating { color: #f5b042; margin: 0.8rem 0; letter-spacing: 2px; }
+    .technique-card { flex: 1 1 240px; padding: 1.8rem; text-align: center; }
+    .technique-card i { background: rgba(193, 123, 92, 0.15); padding: 0.8rem; border-radius: 60px; margin-bottom: 1rem; }
+
+    /* blink flash effect */
+    .blink-flash {
+      background-color: #f3dfd2 !important;
+      transition: background-color 0.06s ease;
+    }
+    body.dark-mode .blink-flash {
+      background-color: #7f634f !important;
+    }
+
+    .price-book-btn {
+      margin-top: auto;
+      background: var(--accent);
+      color: var(--accent-text);
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      border-radius: 40px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .price-book-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* floating back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--accent-text);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+      border: none;
+    }
+    .back-to-top.show { opacity: 1; visibility: visible; }
+
+    /* ---------- ENHANCED FOOTER (exactly as first code) ---------- */
+    .site-footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 1.2rem 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+    .footer-brand .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+    .footer-brand .logo-mark { width: 42px; height: 42px; }
+    .footer-brand .logo-text { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: var(--accent); }
+    .footer-description { color: var(--text-secondary); font-size: 0.85rem; margin: 0.8rem 0 1rem 0; }
+    .footer-heading {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1.1rem;
+      color: var(--text-primary);
+      display: inline-block;
+      position: relative;
+    }
+    .footer-heading:after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .footer-links-list { list-style: none; margin-top: 0.5rem; }
+    .footer-links-list li { margin-bottom: 0.6rem; }
+    .footer-links-list a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-links-list a i { font-size: 0.7rem; color: var(--accent); }
+    .footer-links-list a:hover { color: var(--link-hover); transform: translateX(3px); }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .contact-info-item i { width: 1.2rem; color: var(--accent); }
+    .social-links-footer {
+      display: flex;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+    .social-links-footer a {
+      background: rgba(155, 123, 92, 0.15);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      transition: 0.25s;
+    }
+    .social-links-footer a:hover { background: var(--accent); color: var(--accent-text); transform: translateY(-2px); }
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .legal-links { display: flex; gap: 1.5rem; }
+    .legal-links a { color: var(--text-secondary); text-decoration: none; }
+    .legal-links a:hover { color: var(--link-hover); text-decoration: underline; }
+
+    /* RTL adjustments */
+    html[dir="rtl"] .footer-heading:after { left: auto; right: 0; }
+    html[dir="rtl"] .footer-links-list a i { transform: scaleX(-1); }
+    html[dir="rtl"] .footer-links-list a:hover { transform: translateX(-3px); }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .navbar { padding: 0.7rem 1.2rem; }
+      .nav-container { display: flex; justify-content: space-between; }
+      .hamburger { display: block; }
+      .nav-menu {
+        display: flex;
+        position: fixed;
+        top: 72px;
+        right: -100%;
+        width: 78%;
+        max-width: 340px;
+        height: calc(100vh - 72px);
+        background: var(--navbar-bg);
+        backdrop-filter: blur(8px);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 2rem 1.8rem;
+        transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        box-shadow: -8px 0 28px rgba(0, 0, 0, 0.25);
+        z-index: 999;
+        border-left: 1px solid var(--border);
+        gap: 2rem;
+        overflow-y: auto;
+      }
+      .nav-menu.active { right: 0; }
+      .nav-links { flex-direction: column; align-items: flex-start; width: 100%; gap: 1.4rem; }
+      .nav-links li { width: 100%; }
+      .action-buttons { flex-direction: column; align-items: stretch; width: 100%; gap: 12px; margin-left: 0; }
+      .dropdown-menu { position: static; margin-top: 0.35rem; box-shadow: none; }
+    }
+    @media (max-width: 992px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.4rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+  </style>
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+<!-- ========== ORIGINAL NAVBAR (exactly as first code, with all original links and dropdown) ========== -->
+<header class="navbar" id="mainNavbar">
+  <div class="nav-container">
+    <a href="#" class="logo" id="logoLink">
+      <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+      <span class="logo-text">Zenith</span>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links" id="navLinks">
+        <li>
+          <a href="index.html" class="nav-link dropdown-toggle" id="homeDropdownToggle" aria-expanded="false">
+            Home <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu" id="homeDropdownMenu">
+            <a href="index.html" class="dropdown-link">Home 1</a>
+            <a href="home2.html" class="dropdown-link">Home 2</a>
+          </div>
+        </li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="therapists.html" class="nav-link">Therapists</a></li>
+        <li><a href="corporate events.html" class="nav-link">Corporate Events</a></li>
+        <li><a href="book now.html" class="nav-link">Book Now</a></li>
+        <li><a href="gift card.html" class="nav-link">Gift Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="action-buttons">
+        <button class="icon-btn" id="darkModeToggle"><i class="fas fa-moon"></i> <span>Dark</span></button>
+        <button class="icon-btn" id="rtlToggleBtn"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="btn-outline" id="loginBtn" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> Login</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section (second doc) -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1>Mobile Massage &<br>Chair Massage Service</h1>
+      <p>Professional therapists — we come to your home, office, or event. Deep relaxation, zero travel stress.</p>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="heroBookBtn"><i class="fas fa-calendar-check"></i> Book a Session</button>
+        <a href="#mobile-massage" class="btn btn-outline-light"><i class="fas fa-hand-sparkles"></i> Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section (to match navbar) -->
+  <section id="about" class="bg-light">
+    <div class="container">
+      <h2 class="section-title">About Zenith Wellness</h2>
+      <p style="max-width:800px; margin:1.5rem auto; color:var(--text-secondary);">We bring mindful harmony to your doorstep. With licensed therapists and a passion for holistic healing, we specialize in mobile and chair massage — delivering serenity wherever you are.</p>
+    </div>
+  </section>
+
+  <section id="mobile-massage" class="bg-light"><div class="container"><h2 class="section-title">On‑Demand Mobile Massage</h2><div class="features-grid"><div class="card"><i class="fas fa-home"></i><h3>Home / Hotel Visits</h3><p>Fully equipped table, organic oils — your personal oasis.</p></div><div class="card"><i class="fas fa-clock"></i><h3>Flexible Scheduling</h3><p>Early mornings, late evenings, weekends. Same‑day.</p></div><div class="card"><i class="fas fa-user-md"></i><h3>Licensed </h3><p>Certified in Swedish, deep tissue & sports massage.</p></div><div class="card"><i class="fas fa-heartbeat"></i><h3>Tailored</h3><p>Prenatal, injury recovery, or simply unwind — customized.</p></div></div></div></section>
+
+  <section id="chair-massage" class="bg-warm"><div class="container"><h2 class="section-title">Ergonomic Chair Massage</h2><div class="features-grid"><div class="card"><i class="fas fa-chair"></i><h3>No Oil, No Mess</h3><p>Fully clothed, seated massage for neck, shoulders & back.</p></div><div class="card"><i class="fas fa-building"></i><h3>Corporate Wellness</h3><p>Boost morale and productivity — chair massage breaks.</p></div><div class="card"><i class="fas fa-calendar-week"></i><h3>Event Booking</h3><p>From 2-hour pop-ups to full‑day events. Professional.</p></div><div class="card"><i class="fas fa-hand-peace"></i><h3>10–30 min sessions</h3><p>Perfect for break rooms, health fairs, or private parties.</p></div></div></div></section>
+
+  <section id="how-it-works" class="bg-soft"><div class="container"><h2 class="section-title">How It Flows</h2><div class="steps"><div class="step-item"><div class="step-num">1</div><h3>Pick your service</h3><p>Mobile or chair massage, select.</p></div><div class="step-item"><div class="step-num">2</div><h3>Schedule instantly</h3><p>Choose time slot, we confirm.</p></div><div class="step-item"><div class="step-num">3</div><h3>Relax & enjoy</h3><p>Therapist arrives with premium.</p></div><div class="step-item"><div class="step-num">4</div><h3>Follow‑up care</h3><p>Self-care tips & easy rebooking.</p></div></div></div></section>
+
+  <section id="pricing" class="bg-light"><div class="container"><h2 class="section-title">Simple, Honest Pricing</h2><div class="pricing-grid"><div class="price-card"><div class="price-header"><h3>Mobile Massage</h3><div class="price">$99</div><small>per 60 min session</small></div><div class="price-desc"><ul><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Full body or focus area</li><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Organic oils & hot towels</li><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Travel within city zone</li></ul><button class="price-book-btn" data-service="Mobile Massage - 60min">Book mobile</button></div></div><div class="price-card"><div class="price-header"><h3>Chair Massage</h3><div class="price">$2.5/min</div><small>minimum 20 min / person</small></div><div class="price-desc"><ul><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> On‑site chair setup</li><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Corporate & private events</li><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Fully clothed / no oil</li></ul><button class="price-book-btn" data-service="Chair Massage Event">Inquire event</button></div></div><div class="price-card"><div class="price-header"><h3>Wellness Plan</h3><div class="price">$269</div><small>3 mobile sessions</small></div><div class="price-desc"><ul><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> 3 x 60 min massages</li><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Flexible scheduling</li><li><i class="fas fa-check-circle" style="color:var(--accent);"></i> Free aromatherapy add‑on</li></ul><button class="price-book-btn" data-service="Wellness Plan (3 sessions)">Get plan</button></div></div></div></div></section>
+
+  <section id="testimonials" class="bg-warm"><div class="container"><h2 class="section-title">What clients say</h2><div class="testimonial-grid"><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>"Mobile massage after work week — therapist arrived early, flawless setup. Felt"</p><div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><strong>- Elena R.</strong></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>"Chair massage for office wellness day. Team thrilled — professional and super."</p><div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><strong>- Mark T., HR Director</strong></div><div class="testimonial-card"><i class="fas fa-quote-left"></i><p>"Same-day booking saved my back pain before a flight. 10/10 will repeat."</p><div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><strong>- Sophia L.</strong></div></div></div></section>
+
+  <section id="techniques" class="bg-stone"><div class="container"><h2 class="section-title">Therapeutic Techniques We Master</h2><div class="techniques-grid"><div class="technique-card"><i class="fas fa-hand-holding-heart"></i><h3>Swedish Massage</h3><p>Long, flowing strokes for deep relaxation.</p></div><div class="technique-card"><i class="fas fa-dumbbell"></i><h3>Deep Tissue</h3><p>Targeted pressure for chronic muscle knots.</p></div><div class="technique-card"><i class="fas fa-baby-carriage"></i><h3>Prenatal Massage</h3><p>Safe side-lying techniques for pregnancy.</p></div><div class="technique-card"><i class="fas fa-running"></i><h3>Sports Recovery</h3><p>Pre/post event to boost performance.</p></div><div class="technique-card"><i class="fas fa-leaf"></i><h3>Aromatherapy</h3><p>Essential oils to enhance mood.</p></div><div class="technique-card"><i class="fas fa-hands-helping"></i><h3>Trigger Point Therapy</h3><p>Precise pressure on hyperirritable spots.</p></div></div></div></section>
+
+  <!-- Gift Cards Section -->
+  <section id="giftcards" class="bg-light"><div class="container"><h2 class="section-title">Gift Cards</h2><p style="font-size:1.1rem; color:var(--text-secondary);">Give the gift of relaxation. Choose any dollar amount or a package — delivered digitally or as a beautiful physical card.</p><button class="btn btn-primary" style="margin-top:1.5rem;" id="giftCardBtn">Purchase Gift Card</button></div></section>
+</main>
+
+<!-- ========== ORIGINAL ENHANCED FOOTER (exactly as first code) ========== -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <!-- Column 1: Brand + Logo (identical to navbar) -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo" id="footerLogoLink">
+          <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+          <span class="logo-text">Zenith</span>
+        </a>
+        <p class="footer-description">
+          Mindful harmony through therapeutic touch. Mobile massage & chair massage specialists bringing relaxation to your doorstep — corporate wellness, events, or private sessions.
+        </p>
+        <div class="social-links-footer">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links (wellness & massage) -->
+      <div>
+        <h4 class="footer-heading">Explore</h4>
+        <ul class="footer-links-list">
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Mobile Massage</a></li>
+          <li><a href="corporate events.html"><i class="fas fa-chevron-right"></i> Chair Massage Events</a></li>
+          <li><a href="therapists.html"><i class="fas fa-chevron-right"></i> Our Therapists</a></li>
+          <li><a href="book now.html"><i class="fas fa-chevron-right"></i> Book a Session</a></li>
+          <li><a href="gift card.html"><i class="fas fa-chevron-right"></i> Gift Cards</a></li>
+          <li><a href="#pricing"><i class="fas fa-chevron-right"></i> Pricing & Packages</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact & Support -->
+      <div>
+        <h4 class="footer-heading">Connect</h4>
+        <div class="contact-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Serving Greater Metro & Surroundings</span>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+15551234567">+1 (555) 123-4567</a>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:hello@zenithwellness.com">hello@zenithwellness.com</a>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon-Sat: 9am – 8pm | Sun: 10am – 6pm</span>
+        </div>
+      </div>
+
+      <!-- Column 4: Corporate & Chair Massage Spotlight -->
+      <div>
+        <h4 class="footer-heading">On-site Services</h4>
+        <ul class="footer-links-list">
+          <li><a href="corporate events.html"><i class="fas fa-building"></i> Corporate Chair Massage</a></li>
+          <li><a href="#events"><i class="fas fa-calendar-alt"></i> Event Wellness</a></li>
+          <li><a href="#mobile"><i class="fas fa-truck"></i> Mobile Table Massage</a></li>
+          <li><a href="#wellness"><i class="fas fa-hand-spa"></i> Stress Relief Programs</a></li>
+        </ul>
+        <div style="margin-top: 1rem; background: rgba(155, 123, 92, 0.12); padding: 0.6rem; border-radius: 16px; font-size: 0.8rem;">
+          <i class="fas fa-chair"></i> <strong>Chair massage for offices:</strong> boost morale & reduce tension — ask about corporate rates.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        <i class="far fa-copyright"></i> <span id="currentYear"></span> Zenith Wellness — Mindful Harmony. All rights reserved.
+      </div>
+      <div class="legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="back-to-top">
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+          <i class="fas fa-arrow-up"></i> Back to top
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="back-to-top" id="floatingBackToTop"><i class="fas fa-arrow-up"></i></div>
+
+<script>
+  (function() {
+    // Helper booking prompt
+    function showBookingPrompt(serviceName = null) {
+      let msg = "📞 To book your session, please call us at +1 (555) 123-4567 or email hello@zenithwellness.com.\nOur team will reply within 2 hours.";
+      if(serviceName) msg = `✨ Interested in ${serviceName}?\n\n` + msg;
+      alert(msg);
+    }
+
+    // Hero & price book buttons
+    document.getElementById('heroBookBtn')?.addEventListener('click', () => showBookingPrompt());
+    document.querySelectorAll('.price-book-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const svc = btn.getAttribute('data-service') || 'massage service';
+        showBookingPrompt(svc);
+      });
+    });
+    document.getElementById('giftCardBtn')?.addEventListener('click', () => showBookingPrompt('Gift Card'));
+
+    // Blink flash on cards
+    const blinkables = document.querySelectorAll('.card, .price-card, .testimonial-card, .technique-card');
+    blinkables.forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.add('blink-flash');
+        setTimeout(() => el.classList.remove('blink-flash'), 180);
+      });
+    });
+
+    // Navbar logo and footer logo scroll to top
+    const logoLink = document.getElementById('logoLink');
+    if(logoLink) logoLink.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+    const footerLogoLink = document.getElementById('footerLogoLink');
+    if(footerLogoLink) footerLogoLink.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+
+    // Dark mode
+    const darkToggle = document.getElementById('darkModeToggle');
+    const isDark = localStorage.getItem('darkMode') === 'enabled';
+    if(isDark) document.body.classList.add('dark-mode');
+    function updateDarkUI(darkActive) {
+      if(!darkToggle) return;
+      const icon = darkToggle.querySelector('i'), span = darkToggle.querySelector('span');
+      if(darkActive) { icon.className = 'fas fa-sun'; span.innerText = 'Light'; }
+      else { icon.className = 'fas fa-moon'; span.innerText = 'Dark'; }
+    }
+    updateDarkUI(isDark);
+    if(darkToggle) {
+      darkToggle.addEventListener('click', () => {
+        const nowDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', nowDark ? 'enabled' : 'disabled');
+        updateDarkUI(nowDark);
+      });
+    }
+
+    // RTL toggle
+    let isRTL = localStorage.getItem('rtlMode') === 'enabled';
+    function applyRTL(rtlActive) {
+      if(rtlActive) document.documentElement.setAttribute('dir', 'rtl');
+      else document.documentElement.setAttribute('dir', 'ltr');
+      const btn = document.getElementById('rtlToggleBtn');
+      if(btn) btn.innerHTML = rtlActive ? '<i class="fas fa-exchange-alt"></i> LTR' : '<i class="fas fa-exchange-alt"></i> RTL';
+      localStorage.setItem('rtlMode', rtlActive ? 'enabled' : 'disabled');
+    }
+    applyRTL(isRTL);
+    document.getElementById('rtlToggleBtn')?.addEventListener('click', () => { isRTL = !isRTL; applyRTL(isRTL); });
+
+    // Login alert
+    
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    if(hamburger && navMenu) {
+      hamburger.addEventListener('click', (e) => { e.stopPropagation(); navMenu.classList.toggle('active'); });
+      document.addEventListener('click', (e) => {
+        if(window.innerWidth <= 1024 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          navMenu.classList.remove('active');
+        }
+      });
+    }
+
+    // Home dropdown toggle
+    const homeToggle = document.getElementById('homeDropdownToggle');
+    const homeDropdown = document.getElementById('homeDropdownMenu');
+    if(homeToggle && homeDropdown) {
+      homeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = homeDropdown.classList.toggle('show');
+        homeToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      document.addEventListener('click', (e) => {
+        if(!homeDropdown.contains(e.target) && !homeToggle.contains(e.target)) homeDropdown.classList.remove('show');
+      });
+    }
+
+    // Smooth scroll for all internal anchor links (including navbar and footer)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const hash = this.getAttribute('href');
+        if(hash && hash !== '#') {
+          const targetId = hash.substring(1);
+          const targetElem = document.getElementById(targetId);
+          if(targetElem) {
+            e.preventDefault();
+            targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if(navMenu.classList.contains('active')) navMenu.classList.remove('active');
+            if(homeDropdown) homeDropdown.classList.remove('show');
+          }
+        }
+      });
+    });
+
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Floating back to top
+    const floatBtn = document.getElementById('floatingBackToTop');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 500) floatBtn.classList.add('show');
+      else floatBtn.classList.remove('show');
+    });
+    floatBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Footer back to top link
+    const footerBack = document.querySelector('.back-to-top a');
+    if(footerBack) footerBack.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+  })();
+</script>
+
+<script>
+    // --- Added for dynamic active state ---
+    const currentPath = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
+    document.querySelectorAll('.nav-link, .dropdown-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && href.includes(currentPath)) {
+        link.classList.add('active');
+        const parentLi = link.closest('li');
+        if (parentLi) {
+          const toggle = parentLi.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        }
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    // --- End dynamic active state ---
+</script>
+</body>
+</html>

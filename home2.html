@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Zenith Wellness | Mindful Harmony</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="fontawesome/fontawesome-free-6.0.0-web/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* LIGHT MODE (default) */
+    :root {
+      --bg-body: #fefaf5;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --text-primary: #1e2a2e;
+      --text-secondary: #2c3e2f;
+      --accent: #9b7b5c;
+      --accent-light: #e3cfbc;
+      --border: #e6dfd5;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --accent-text: #ffffff;
+      --navbar-bg: #fffbf7;
+      --footer-bg: #f2efe9;
+      --link-hover: #7f5e42;
+      --active-link: #9b7b5c;
+    }
+
+    body.dark-mode {
+      --bg-body: #000000;
+      --bg-surface: #121212;
+      --bg-card: #1e1e1e;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --accent: #e0b68b;
+      --accent-light: #8e735b;
+      --border: #3e3e3e;
+      --accent-text: #121212;
+      --navbar-bg: #0a0a0a;
+      --footer-bg: #050505;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
+      --link-hover: #f3cd9b;
+      --active-link: #e0b68b;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* STICKY NAVBAR - one line flex */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navbar-bg);
+      box-shadow: var(--shadow-sm);
+      border-bottom: 1px solid var(--border);
+      padding: 0.7rem 2rem;
+    }
+
+    .nav-container {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 1rem;
+      position: relative;
+    }
+
+    /* Logo area */
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      white-space: nowrap;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--accent-text);
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(155, 123, 92, 0.2);
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Hamburger button (right side on mobile) */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-primary);
+      order: 3;
+      z-index: 1002;
+    }
+
+    /* Desktop navigation wrapper */
+    .nav-menu {
+      display: contents;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.3rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: nowrap;
+      justify-self: center;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      padding: 0.5rem 0;
+      transition: color 0.2s, border-bottom 0.2s;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .nav-link.dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.35rem);
+      left: 0;
+      min-width: 10rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      padding: 0.45rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.25rem;
+      z-index: 1001;
+    }
+
+    .dropdown-menu.show {
+      display: flex;
+    }
+
+    .dropdown-link {
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-link:hover {
+      background: var(--accent-light);
+      color: var(--link-hover);
+    }
+
+    .nav-links li a:hover {
+      color: var(--link-hover);
+    }
+
+    .nav-links li a.active {
+      color: var(--active-link);
+      border-bottom: 2px solid var(--active-link);
+      font-weight: 600;
+    }
+
+    /* action buttons: Dark mode, RTL, Login (register removed) */
+    .action-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 0.3rem;
+      justify-self: end;
+    }
+
+    .icon-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #1e2a2e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 5px 12px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--accent);
+      transition: all 0.2s;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--accent-text);
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* ========== ENHANCED FOOTER STYLES (same color, font, variables) ========== */
+    .site-footer {
+      background: var(--footer-bg);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 1.2rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
+
+    /* Brand column (logo identical to navbar) */
+    .footer-brand .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+
+    .footer-brand .logo-mark {
+      width: 42px;
+      height: 42px;
+      font-size: 1rem;
+    }
+
+    .footer-brand .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .footer-description {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0.8rem 0 1rem 0;
+    }
+
+    .footer-heading {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 1.1rem;
+      letter-spacing: -0.2px;
+      color: var(--text-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-heading:after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .footer-links-list li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links-list a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links-list a i {
+      font-size: 0.7rem;
+      width: 1rem;
+      color: var(--accent);
+    }
+
+    .footer-links-list a:hover {
+      color: var(--link-hover);
+      transform: translateX(3px);
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-info-item i {
+      width: 1.2rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .contact-info-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .contact-info-item a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    .social-links-footer {
+      display: flex;
+      gap: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .social-links-footer a {
+      background: rgba(155, 123, 92, 0.15);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+
+    .social-links-footer a:hover {
+      background: var(--accent);
+      color: var(--accent-text);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-bottom .copyright {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom .legal-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-bottom .legal-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .footer-bottom .legal-links a:hover {
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    /* responsive */
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .footer-container {
+        padding: 2rem 1.2rem 1rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+      }
+      .legal-links {
+        justify-content: center;
+      }
+    }
+
+    /* RTL adjustments */
+    html[dir="rtl"] .footer-heading:after {
+      left: auto;
+      right: 0;
+    }
+    html[dir="rtl"] .footer-links-list a i {
+      transform: scaleX(-1);
+    }
+    html[dir="rtl"] .footer-links-list a:hover {
+      transform: translateX(-3px);
+    }
+
+    /* Mobile navbar remains untouched */
+    @media (max-width: 1024px) {
+      .navbar {
+        padding: 0.7rem 1.2rem;
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
+      .hamburger {
+        display: block;
+      }
+      .dropdown-menu {
+        position: static;
+        margin-top: 0.35rem;
+        box-shadow: none;
+        border-radius: 12px;
+      }
+      .nav-menu {
+        display: flex;
+        position: fixed;
+        top: 72px;
+        right: -100%;
+        width: 78%;
+        max-width: 340px;
+        height: calc(100vh - 72px);
+        background: var(--navbar-bg);
+        backdrop-filter: blur(8px);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        padding: 2rem 1.8rem;
+        transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        box-shadow: -8px 0 28px rgba(0, 0, 0, 0.25);
+        z-index: 999;
+        border-left: 1px solid var(--border);
+        gap: 2rem;
+        overflow-y: auto;
+      }
+      .nav-menu.active {
+        right: 0;
+      }
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 1.4rem;
+      }
+      .nav-links li {
+        width: 100%;
+      }
+      .nav-links li a {
+        white-space: normal;
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+        padding: 0.3rem 0;
+      }
+      .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+        margin-left: 0;
+      }
+      .action-buttons .icon-btn,
+      .action-buttons .btn-outline {
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* Home 2 Unique Styles */
+    .h2-hero {
+      position: relative;
+      min-height: 90vh;
+      background: url('./images/bg1.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+    }
+    .h2-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%);
+    }
+    .h2-hero-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 3rem;
+      border-radius: 24px;
+      max-width: 600px;
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    body.dark-mode .h2-hero-card {
+      background: rgba(30, 42, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .h2-hero-card h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .h2-hero-card p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+    .h2-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: var(--accent-text);
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid var(--accent);
+    }
+    .h2-btn:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+    .h2-btn.outline {
+      background: transparent;
+      color: #fff;
+      border-color: #fff;
+    }
+    .h2-btn.outline:hover {
+      background: #fff;
+      color: #000;
+    }
+    .h2-btn.outline.invert {
+      color: var(--text-primary);
+      border-color: var(--border);
+    }
+    .h2-btn.outline.invert:hover {
+      background: var(--text-primary);
+      color: var(--bg-surface);
+      border-color: var(--text-primary);
+    }
+
+    .h2-section {
+      padding: 6rem 5%;
+    }
+    .h2-section-title {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .h2-section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 4rem;
+      font-size: 1.1rem;
+    }
+
+    /* Specialties Grid */
+    .h2-specialties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .h2-spec-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .h2-spec-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .h2-spec-card:hover {
+      transform: translateY(-5px);
+    }
+    .h2-spec-card:hover::before {
+      transform: scaleX(1);
+    }
+    .h2-spec-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Experience */
+    .h2-experience {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      background: var(--navbar-bg);
+    }
+    .h2-exp-img-wrapper {
+      flex: 1;
+      position: relative;
+    }
+    .h2-exp-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .h2-float-badge {
+      position: absolute;
+      background: var(--bg-surface);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      bottom: -20px;
+      right: -20px;
+      border: 1px solid var(--border);
+      animation: float 3s ease-in-out infinite;
+    }
+    .h2-float-badge.top {
+      top: -20px;
+      left: -20px;
+      bottom: auto;
+      right: auto;
+      animation-delay: 1.5s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .h2-exp-text {
+      flex: 1;
+    }
+
+    /* ZigZag Layout */
+    .h2-zigzag {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+    .h2-zig-item {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+    .h2-zig-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .h2-zig-img {
+      flex: 1;
+      height: 400px;
+      border-radius: 30px;
+      object-fit: cover;
+      box-shadow: var(--shadow-sm);
+    }
+    .h2-zig-content {
+      flex: 1;
+    }
+    .h2-zig-content h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .h2-zig-content p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Testimonials */
+    .h2-testimonials {
+      background: var(--bg-body);
+      overflow: hidden;
+    }
+    .h2-test-scroll {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding-bottom: 2rem;
+      scrollbar-width: none;
+    }
+    .h2-test-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .h2-test-card {
+      min-width: 350px;
+      background: var(--bg-surface);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .h2-test-stars {
+      color: #FFD700;
+      margin-bottom: 1rem;
+    }
+    .h2-test-text {
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+    .h2-test-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .h2-test-author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .h2-test-author-info h4 {
+      font-size: 1rem;
+      margin: 0;
+    }
+    .h2-test-author-info span {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* Process Timeline */
+    .h2-process {
+      background: var(--navbar-bg);
+    }
+    .h2-process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      position: relative;
+    }
+    .h2-step {
+      text-align: center;
+      position: relative;
+    }
+    .h2-step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--accent-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 10px 20px rgba(155, 123, 92, 0.3);
+    }
+    .h2-step h3 {
+      margin-bottom: 1rem;
+    }
+    .h2-step p {
+      color: var(--text-secondary);
+    }
+
+    /* Packages */
+    .h2-packages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .h2-pack-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .h2-pack-card.popular {
+      transform: scale(1.05);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .h2-pack-card.popular::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--accent);
+      color: var(--accent-text);
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .h2-pack-price {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 1.5rem 0;
+    }
+    .h2-pack-price span {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .h2-pack-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .h2-pack-list li {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+    .h2-pack-list li i {
+      color: var(--accent);
+      margin-right: 10px;
+    }
+
+    /* CTA Banner */
+    .h2-cta-banner {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--link-hover) 100%);
+      border-radius: 30px;
+      padding: 5rem 3rem;
+      text-align: center;
+      color: var(--accent-text);
+      box-shadow: 0 20px 40px rgba(155, 123, 92, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .h2-cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .h2-cta-banner h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .h2-cta-banner p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+    }
+    .h2-cta-banner .h2-btn.outline {
+      color: var(--accent-text);
+      border-color: var(--accent-text);
+    }
+    .h2-cta-banner .h2-btn.outline:hover {
+      background: var(--accent-text);
+      color: var(--accent);
+    }
+
+
+    @media (max-width: 992px) {
+      .h2-experience, .h2-zig-item, .h2-zig-item:nth-child(even) {
+        flex-direction: column;
+      }
+      .h2-pack-card.popular {
+        transform: scale(1);
+      }
+    }
+    @media (max-width: 768px) {
+      .h2-hero-card h1 { font-size: 2.5rem; }
+      .h2-section-title { font-size: 2.2rem; }
+      .h2-float-badge { display: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+<header class="navbar" id="mainNavbar">
+  <div class="nav-container">
+    <a href="#" class="logo" id="logoLink">
+      <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+      <span class="logo-text">Zenith</span>
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links" id="navLinks">
+        <li>
+          <a href="index.html" class="nav-link dropdown-toggle" id="homeDropdownToggle" aria-expanded="false">
+            Home <i class="fas fa-chevron-down"></i>
+          </a>
+          <div class="dropdown-menu" id="homeDropdownMenu">
+            <a href="index.html" class="dropdown-link">Home 1</a>
+            <a href="home2.html" class="dropdown-link">Home 2</a>
+          </div>
+        </li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="therapists.html" class="nav-link">Therapists</a></li>
+        <li><a href="corporate events.html" class="nav-link">Corporate Events</a></li>
+        <li><a href="book now.html" class="nav-link">Book Now</a></li>
+        <li><a href="gift card.html" class="nav-link">Gift Cards</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="action-buttons">
+        <button class="icon-btn" id="darkModeToggle"><i class="fas fa-moon"></i> <span>Dark</span></button>
+        <button class="icon-btn" id="rtlToggleBtn"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="btn-outline" id="loginBtn" onclick="window.location.href='login.html'"><i class="fas fa-sign-in-alt"></i> Login</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Hero Section -->
+  <section class="h2-hero">
+    <div class="h2-hero-card">
+      <h1>Elevate Your Senses</h1>
+      <p>Discover a sanctuary of peace where your mind and body find perfect harmony. Indulge in our tailored wellness experiences designed to restore your natural balance.</p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="book now.html" class="h2-btn">Book Appointment <i class="fas fa-arrow-right"></i></a>
+        <a href="services.html" class="h2-btn outline">Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Unique Specialties (Cards) -->
+  <section class="h2-section">
+    <h2 class="h2-section-title">Our Signature Therapies</h2>
+    <p class="h2-section-subtitle">Curated experiences that blend ancient wisdom with modern techniques for ultimate relaxation.</p>
+    <div class="h2-specialties">
+      <div class="h2-spec-card">
+        <i class="fas fa-spa h2-spec-icon"></i>
+        <h3>Aroma-Fusion Massage</h3>
+        <p>A sensory journey combining customized essential oil blends with Swedish techniques to melt away stress.</p>
+      </div>
+      <div class="h2-spec-card">
+        <i class="fas fa-fire-alt h2-spec-icon"></i>
+        <h3>Thermal Stone Therapy</h3>
+        <p>Heated basalt stones glide over your muscles to provide deep, comforting warmth and tension relief.</p>
+      </div>
+      <div class="h2-spec-card">
+        <i class="fas fa-leaf h2-spec-icon"></i>
+        <h3>Botanical Body Wrap</h3>
+        <p>Detoxify and nourish your skin with our organic botanical wraps, leaving you radiant and refreshed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Experience & Stats (Image + Floating Badges) -->
+  <section class="h2-section h2-experience">
+    <div class="h2-exp-img-wrapper">
+      <img src="images/spa_experience.png" alt="Spa Experience" class="h2-exp-img">
+      <div class="h2-float-badge top">
+        <i class="fas fa-award" style="font-size: 2rem; color: var(--accent)"></i>
+        <div>
+          <h4 style="margin:0; font-size:1.1rem;">Top Rated</h4>
+          <span style="font-size:0.8rem; color:var(--text-secondary)">Wellness Center</span>
+        </div>
+      </div>
+      <div class="h2-float-badge">
+        <i class="fas fa-user-md" style="font-size: 2rem; color: var(--accent)"></i>
+        <div>
+          <h4 style="margin:0; font-size:1.1rem;">15+ Years</h4>
+          <span style="font-size:0.8rem; color:var(--text-secondary)">Expert Therapists</span>
+        </div>
+      </div>
+    </div>
+    <div class="h2-exp-text">
+      <h2 class="h2-section-title" style="text-align: left;">A Sanctuary for Your Soul</h2>
+      <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">
+        At Zenith, we believe that true wellness is achieved when the mind, body, and spirit are aligned. Our sanctuary is designed to transport you from the hustle of daily life into a state of profound tranquility.
+      </p>
+      <ul style="list-style: none; margin-bottom: 2rem;">
+        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-check-circle" style="color: var(--accent);"></i> Premium Organic Products
+        </li>
+        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-check-circle" style="color: var(--accent);"></i> Certified Expert Therapists
+        </li>
+        <li style="display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-check-circle" style="color: var(--accent);"></i> Tailored Wellness Plans
+        </li>
+      </ul>
+      <a href="about.html" class="h2-btn">Learn Our Story</a>
+    </div>
+  </section>
+
+  <!-- 4. Why Choose Us (Zig-Zag) -->
+  <section class="h2-section">
+    <div class="h2-zigzag">
+      <div class="h2-zig-item">
+        <img src="images/relaxing_ambiance.png" alt="Relaxing ambiance" class="h2-zig-img">
+        <div class="h2-zig-content">
+          <h3>Holistic Environment</h3>
+          <p>Immerse yourself in an ambiance crafted carefully with soothing sounds, calming aromas, and ambient lighting. Every detail is curated to enhance your relaxation from the moment you step in.</p>
+          <a href="services.html" style="color: var(--accent); font-weight: 600; text-decoration: none;">Explore Environment <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="h2-zig-item">
+        <img src="images/therapy_session.png" alt="Therapy Session" class="h2-zig-img">
+        <div class="h2-zig-content">
+          <h3>Personalized Care</h3>
+          <p>We understand that every body is unique. Our therapists take the time to consult with you, understanding your specific needs and adjusting pressure and techniques to ensure the perfect session.</p>
+          <a href="therapists.html" style="color: var(--accent); font-weight: 600; text-decoration: none;">Meet Our Therapists <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Process / Timeline -->
+  <section class="h2-section h2-process">
+    <h2 class="h2-section-title">Your Journey to Wellness</h2>
+    <p class="h2-section-subtitle">Experience a seamless transition into relaxation with our carefully structured process.</p>
+    <div class="h2-process-grid">
+      <div class="h2-step">
+        <div class="h2-step-number">1</div>
+        <h3>Consultation</h3>
+        <p>Brief discussion to understand your wellness goals and any areas of focus.</p>
+      </div>
+      <div class="h2-step">
+        <div class="h2-step-number">2</div>
+        <h3>Preparation</h3>
+        <p>Settle into our comfortable suites and enjoy a calming herbal tea.</p>
+      </div>
+      <div class="h2-step">
+        <div class="h2-step-number">3</div>
+        <h3>Treatment</h3>
+        <p>Experience your customized therapy session tailored just for you.</p>
+      </div>
+      <div class="h2-step">
+        <div class="h2-step-number">4</div>
+        <h3>Rejuvenation</h3>
+        <p>Awaken gently and enjoy post-session recommendations for lasting effects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Wellness Packages -->
+  <section class="h2-section">
+    <h2 class="h2-section-title">Curated Packages</h2>
+    <p class="h2-section-subtitle">Invest in your wellbeing with our specially designed package options.</p>
+    <div class="h2-packages">
+      <div class="h2-pack-card">
+        <h3>Essential Reset</h3>
+        <div class="h2-pack-price">$99<span>/session</span></div>
+        <ul class="h2-pack-list">
+          <li><i class="fas fa-check"></i> 60 Min Swedish Massage</li>
+          <li><i class="fas fa-check"></i> Aromatherapy Included</li>
+          <li><i class="fas fa-check"></i> Hot Towel Finish</li>
+          <li><i class="fas fa-check"></i> Complimentary Drink</li>
+        </ul>
+        <a href="book now.html" class="h2-btn outline invert">Select Plan</a>
+      </div>
+      <div class="h2-pack-card popular">
+        <h3>Deep Renewal</h3>
+        <div class="h2-pack-price">$149<span>/session</span></div>
+        <ul class="h2-pack-list">
+          <li><i class="fas fa-check"></i> 90 Min Deep Tissue</li>
+          <li><i class="fas fa-check"></i> Custom Oil Blend</li>
+          <li><i class="fas fa-check"></i> Focus on Target Areas</li>
+          <li><i class="fas fa-check"></i> Complimentary Drink</li>
+        </ul>
+        <a href="book now.html" class="h2-btn">Select Plan</a>
+      </div>
+      <div class="h2-pack-card">
+        <h3>Zenith Ultimate</h3>
+        <div class="h2-pack-price">$199<span>/session</span></div>
+        <ul class="h2-pack-list">
+          <li><i class="fas fa-check"></i> 120 Min Signature Combo</li>
+          <li><i class="fas fa-check"></i> Hot Stone Integration</li>
+          <li><i class="fas fa-check"></i> Foot Reflexology</li>
+          <li><i class="fas fa-check"></i> Take-home Oil Gift</li>
+        </ul>
+        <a href="book now.html" class="h2-btn outline invert">Select Plan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Testimonials -->
+  <section class="h2-section h2-testimonials">
+    <h2 class="h2-section-title">Client Stories</h2>
+    <p class="h2-section-subtitle">Read what our clients have to say about their Zenith experience.</p>
+    <div class="h2-test-scroll">
+      <div class="h2-test-card">
+        <div class="h2-test-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="h2-test-text">"Absolutely the best massage I've ever had. The attention to detail and the ambiance truly transported me."</p>
+        <div class="h2-test-author">
+          <img src="images/sarah_j.png" alt="Sarah J." class="h2-test-author-img">
+          <div class="h2-test-author-info">
+            <h4>Sarah Jenkins</h4>
+            <span>Regular Client</span>
+          </div>
+        </div>
+      </div>
+      <div class="h2-test-card">
+        <div class="h2-test-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="h2-test-text">"The Deep Renewal package is a game changer for my back pain. The therapists here are incredibly skilled."</p>
+        <div class="h2-test-author">
+          <img src="images/michael_t.png" alt="Michael T." class="h2-test-author-img">
+          <div class="h2-test-author-info">
+            <h4>Michael Torres</h4>
+            <span>Athlete</span>
+          </div>
+        </div>
+      </div>
+      <div class="h2-test-card">
+        <div class="h2-test-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="h2-test-text">"A perfect sanctuary in the middle of the city. The aroma-fusion therapy left me feeling rejuvenated for days."</p>
+        <div class="h2-test-author">
+          <img src="images/emma_l.png" alt="Emma L." class="h2-test-author-img">
+          <div class="h2-test-author-info">
+            <h4>Emma Larson</h4>
+            <span>Entrepreneur</span>
+          </div>
+        </div>
+      </div>
+      <div class="h2-test-card">
+        <div class="h2-test-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="h2-test-text">"Highly recommend Zenith for anyone looking to de-stress. The staff is polite, professional, and excellent."</p>
+        <div class="h2-test-author">
+          <img src="images/david_m.png" alt="David M." class="h2-test-author-img">
+          <div class="h2-test-author-info">
+            <h4>David Miller</h4>
+            <span>Corporate Executive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Final CTA Banner -->
+  <section class="h2-section" style="padding-top: 2rem;">
+    <div class="h2-cta-banner">
+      <h2>Ready for Ultimate Relaxation?</h2>
+      <p>Book your session today and step into a world of mindful harmony.</p>
+      <a href="book now.html" class="h2-btn outline" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Secure Your Booking</a>
+    </div>
+  </section>
+</main>
+
+<!-- ========== ENHANCED FOOTER SAME COLOR, FONT, NAVBAR LOGO INCLUDED ========== -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <!-- Column 1: Brand + Logo (identical to navbar) -->
+      <div class="footer-brand">
+        <a href="#" class="footer-logo" id="footerLogoLink">
+          <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+          <span class="logo-text">Zenith</span>
+        </a>
+        <p class="footer-description">
+          Mindful harmony through therapeutic touch. Mobile massage & chair massage specialists bringing relaxation to your doorstep — corporate wellness, events, or private sessions.
+        </p>
+        <div class="social-links-footer">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links (wellness & massage) -->
+      <div>
+        <h4 class="footer-heading">Explore</h4>
+        <ul class="footer-links-list">
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Mobile Massage</a></li>
+          <li><a href="corporate events.html"><i class="fas fa-chevron-right"></i> Chair Massage Events</a></li>
+          <li><a href="therapists.html"><i class="fas fa-chevron-right"></i> Our Therapists</a></li>
+          <li><a href="book now.html"><i class="fas fa-chevron-right"></i> Book a Session</a></li>
+          <li><a href="gift card.html"><i class="fas fa-chevron-right"></i> Gift Cards</a></li>
+          <li><a href="#pricing"><i class="fas fa-chevron-right"></i> Pricing & Packages</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact & Support -->
+      <div>
+        <h4 class="footer-heading">Connect</h4>
+        <div class="contact-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Serving Greater Metro & Surroundings</span>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+15551234567">+1 (555) 123-4567</a>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:hello@zenithwellness.com">hello@zenithwellness.com</a>
+        </div>
+        <div class="contact-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon-Sat: 9am – 8pm | Sun: 10am – 6pm</span>
+        </div>
+      </div>
+
+      <!-- Column 4: Corporate & Chair Massage Spotlight -->
+      <div>
+        <h4 class="footer-heading">On-site Services</h4>
+        <ul class="footer-links-list">
+          <li><a href="corporate events.html"><i class="fas fa-building"></i> Corporate Chair Massage</a></li>
+          <li><a href="#events"><i class="fas fa-calendar-alt"></i> Event Wellness</a></li>
+          <li><a href="#mobile"><i class="fas fa-truck"></i> Mobile Table Massage</a></li>
+          <li><a href="#wellness"><i class="fas fa-hand-spa"></i> Stress Relief Programs</a></li>
+        </ul>
+        <div style="margin-top: 1rem; background: rgba(155, 123, 92, 0.12); padding: 0.6rem; border-radius: 16px; font-size: 0.8rem;">
+          <i class="fas fa-chair"></i> <strong>Chair massage for offices:</strong> boost morale & reduce tension — ask about corporate rates.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright">
+        <i class="far fa-copyright"></i> <span id="currentYear"></span> Zenith Wellness — Mindful Harmony. All rights reserved.
+      </div>
+      <div class="legal-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="back-to-top">
+        <a href="#" style="color: var(--text-secondary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+          <i class="fas fa-arrow-up"></i> Back to top
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // DOM elements
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const homeDropdownToggle = document.getElementById('homeDropdownToggle');
+    const homeDropdownMenu = document.getElementById('homeDropdownMenu');
+    const dropdownLinks = document.querySelectorAll('.dropdown-link');
+    const darkToggle = document.getElementById('darkModeToggle');
+    const rtlToggle = document.getElementById('rtlToggleBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoLink = document.getElementById('logoLink');
+    const footerLogoLink = document.getElementById('footerLogoLink');
+
+    // Helper: close mobile menu (right side)
+    function closeMobileMenu() {
+      if (window.innerWidth <= 1024 && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+      }
+    }
+
+    function closeHomeDropdown() {
+      if (homeDropdownMenu) {
+        homeDropdownMenu.classList.remove('show');
+      }
+      if (homeDropdownToggle) {
+        homeDropdownToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    // Smooth scroll for all internal links (including footer links)
+    const allInternalLinks = document.querySelectorAll('a[href^="#"]');
+    allInternalLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== "#" && href.startsWith('#')) {
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetElem = document.getElementById(targetId);
+          if (targetElem) {
+            targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            closeMobileMenu();
+            closeHomeDropdown();
+          }
+        }
+      });
+    });
+
+    // Logo clicks scroll to top
+    if (logoLink) {
+      logoLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeMobileMenu();
+        navLinks.forEach(link => link.classList.remove('active'));
+      });
+    }
+    if (footerLogoLink) {
+      footerLogoLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Home dropdown toggle
+    if (homeDropdownToggle) {
+      homeDropdownToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isOpen = homeDropdownMenu.classList.toggle('show');
+        homeDropdownToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (homeDropdownMenu && !homeDropdownMenu.contains(e.target) && !homeDropdownToggle.contains(e.target)) {
+        closeHomeDropdown();
+      }
+      if (window.innerWidth <= 1024 && navMenu.classList.contains('active') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // Hamburger menu
+    if (hamburger) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    // Dark mode
+    const isDark = localStorage.getItem('darkMode') === 'enabled';
+    if (isDark) {
+      document.body.classList.add('dark-mode');
+      updateDarkButton(true);
+    } else {
+      updateDarkButton(false);
+    }
+    function updateDarkButton(darkActive) {
+      if (!darkToggle) return;
+      const icon = darkToggle.querySelector('i');
+      const span = darkToggle.querySelector('span');
+      if (darkActive) {
+        icon.className = 'fas fa-sun';
+        span.innerText = 'Light';
+      } else {
+        icon.className = 'fas fa-moon';
+        span.innerText = 'Dark';
+      }
+    }
+    if (darkToggle) {
+      darkToggle.addEventListener('click', () => {
+        const nowDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', nowDark ? 'enabled' : 'disabled');
+        updateDarkButton(nowDark);
+      });
+    }
+
+    // RTL functionality
+    let isRTL = localStorage.getItem('rtlMode') === 'enabled';
+    function applyRTL(rtlActive) {
+      if (rtlActive) {
+        document.documentElement.setAttribute('dir', 'rtl');
+        if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> LTR';
+      } else {
+        document.documentElement.setAttribute('dir', 'ltr');
+        if (rtlToggle) rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> RTL';
+      }
+      localStorage.setItem('rtlMode', rtlActive ? 'enabled' : 'disabled');
+    }
+    applyRTL(isRTL);
+    if (rtlToggle) {
+      rtlToggle.addEventListener('click', () => {
+        isRTL = !isRTL;
+        applyRTL(isRTL);
+      });
+    }
+
+    // Login button demo
+    
+
+    // Set current year in footer
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+    // Back to top smooth
+    const backToTop = document.querySelector('.back-to-top a');
+    if (backToTop) {
+      backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  })();
+</script>
+
+<script>
+    // --- Added for dynamic active state ---
+    const currentPath = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
+    document.querySelectorAll('.nav-link, .dropdown-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && href.includes(currentPath)) {
+        link.classList.add('active');
+        const parentLi = link.closest('li');
+        if (parentLi) {
+          const toggle = parentLi.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        }
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    // --- End dynamic active state ---
+</script>
+</body>
+</html>

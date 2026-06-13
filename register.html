@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Register - Zenith Wellness</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="fontawesome/fontawesome-free-6.0.0-web/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* LIGHT MODE (default) */
+    :root {
+      --bg-body: #fefaf5;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --text-primary: #1e2a2e;
+      --text-secondary: #2c3e2f;
+      --accent: #9b7b5c;
+      --accent-light: #e3cfbc;
+      --border: #e6dfd5;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.1);
+      --accent-text: #ffffff;
+      --navbar-bg: #fffbf7;
+      --input-bg: #fdfdfd;
+      --link-hover: #7f5e42;
+    }
+
+    body.dark-mode {
+      --bg-body: #000000;
+      --bg-surface: #121212;
+      --bg-card: #1e1e1e;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --accent: #e0b68b;
+      --accent-light: #8e735b;
+      --border: #3e3e3e;
+      --accent-text: #121212;
+      --navbar-bg: #0a0a0a;
+      --input-bg: #2a2a2a;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
+      --link-hover: #f3cd9b;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Minimal Header */
+    .register-header {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: transparent;
+    }
+
+    /* Logo area (identical to index.html) */
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      white-space: nowrap;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: var(--accent-text);
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(155, 123, 92, 0.2);
+    }
+    .logo-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .icon-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .icon-btn:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #1e2a2e;
+    }
+
+    /* Main Register Area */
+    .register-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: radial-gradient(circle at top right, rgba(155,123,92,0.05), transparent 40%),
+                  radial-gradient(circle at bottom left, rgba(155,123,92,0.05), transparent 40%);
+    }
+
+    .register-card {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 600px;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+
+    .register-header-text {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .register-header-text h1 {
+      font-size: 1.75rem;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+    .register-header-text p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .form-row .form-group {
+      flex: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+    .input-wrapper {
+      position: relative;
+    }
+    .input-icon {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      opacity: 0.7;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.5rem 1rem 0.5rem 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--input-bg);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(155, 123, 92, 0.1);
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    .password-toggle:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    .terms-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .terms-group input[type="checkbox"] {
+      margin-top: 0.25rem;
+      cursor: pointer;
+    }
+    .terms-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .terms-link:hover {
+      text-decoration: underline;
+    }
+
+    .btn-register {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--accent);
+      color: var(--accent-text);
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-register:hover {
+      background: var(--link-hover);
+      transform: translateY(-2px);
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .login-link a {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      margin-left: 0.3rem;
+    }
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .form-row { flex-direction: column; gap: 0; }
+    }
+
+    /* Social Login */
+    .social-login-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 1rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .social-login-divider::before,
+    .social-login-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border);
+    }
+    .social-login-divider:not(:empty)::before { margin-right: 1em; }
+    .social-login-divider:not(:empty)::after { margin-left: 1em; }
+
+    .social-btn-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .social-btn-icon:hover {
+      background: var(--bg-body);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    @media (max-width: 600px) {
+      .register-header {
+        flex-direction: column;
+        gap: 1rem;
+        position: static;
+        padding-bottom: 0;
+      }
+      .register-main {
+        padding-top: 2rem;
+      }
+      .register-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* RTL Adjustments */
+    html[dir="rtl"] .logo { flex-direction: row-reverse; }
+    html[dir="rtl"] .input-icon { left: auto; right: 1rem; }
+    html[dir="rtl"] .form-control { padding: 1rem 3rem 1rem 1rem; }
+    html[dir="rtl"] .password-toggle { right: auto; left: 1rem; }
+  </style>
+  <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="register-header" style="justify-content: flex-end;">
+    <div class="action-buttons">
+      <button class="icon-btn" id="darkModeToggle">
+        <i class="fas fa-moon"></i> <span id="themeText">Dark</span>
+      </button>
+      <button class="icon-btn" id="rtlToggleBtn">
+        <i class="fas fa-exchange-alt"></i> <span id="rtlText">RTL</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Register Area -->
+  <main class="register-main">
+    <div class="register-card">
+      <div class="register-header-text">
+        <div style="display: flex; justify-content: center; margin-bottom: 0.5rem;">
+          <a href="index.html" class="logo" style="display: inline-flex;">
+            <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+            <span class="logo-text">Zenith</span>
+          </a>
+        </div>
+        <h1>Create an Account</h1>
+        <p>Join Zenith Wellness to manage your bookings and rewards</p>
+      </div>
+
+      <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Registration submitted successfully!');">
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fullname">Full Name</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="fullname" class="form-control" placeholder="John Doe" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" id="email" class="form-control" placeholder="hello@zenithwellness.com" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+              <button type="button" class="password-toggle" data-target="password" aria-label="Toggle Password Visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirm-password">Confirm</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock input-icon"></i>
+              <input type="password" id="confirm-password" class="form-control" placeholder="Repeat password" required>
+              <button type="button" class="password-toggle" data-target="confirm-password" aria-label="Toggle Password Visibility">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="terms-group">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">I agree to the Zenith Wellness <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>.</label>
+        </div>
+
+        <button type="submit" class="btn-register">
+          Create Account <i class="fas fa-user-plus" style="margin-left: 5px;"></i>
+        </button>
+
+        <div class="social-login-divider">Or sign up with</div>
+
+        <div style="display: flex; justify-content: center; gap: 1.5rem;">
+          <button type="button" class="social-btn-icon" aria-label="Sign up with Google">
+            <i class="fab fa-google" style="color: #DB4437;"></i>
+          </button>
+          
+          <button type="button" class="social-btn-icon" aria-label="Sign up with Apple">
+            <i class="fab fa-apple"></i>
+          </button>
+          
+          <button type="button" class="social-btn-icon" aria-label="Sign up with Facebook">
+            <i class="fab fa-facebook-f" style="color: #1877F2;"></i>
+          </button>
+        </div>
+
+      </form>
+
+      <div class="login-link">
+        Already have an account? <a href="login.html">Sign in here</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function() {
+      // Elements
+      const darkToggle = document.getElementById('darkModeToggle');
+      const themeText = document.getElementById('themeText');
+      const rtlToggle = document.getElementById('rtlToggleBtn');
+      const rtlText = document.getElementById('rtlText');
+      const toggleBtns = document.querySelectorAll('.password-toggle');
+
+      // --- Dark Mode Logic ---
+      const isDark = localStorage.getItem('darkMode') === 'enabled';
+      if (isDark) {
+        document.body.classList.add('dark-mode');
+        updateDarkButton(true);
+      } else {
+        updateDarkButton(false);
+      }
+
+      function updateDarkButton(darkActive) {
+        const icon = darkToggle.querySelector('i');
+        if (darkActive) {
+          icon.className = 'fas fa-sun';
+          themeText.innerText = 'Light';
+        } else {
+          icon.className = 'fas fa-moon';
+          themeText.innerText = 'Dark';
+        }
+      }
+
+      darkToggle.addEventListener('click', () => {
+        const nowDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', nowDark ? 'enabled' : 'disabled');
+        updateDarkButton(nowDark);
+      });
+
+      // --- RTL Logic ---
+      let isRTL = localStorage.getItem('rtlMode') === 'enabled';
+      function applyRTL(rtlActive) {
+        if (rtlActive) {
+          document.documentElement.setAttribute('dir', 'rtl');
+          rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span id="rtlText">LTR</span>';
+        } else {
+          document.documentElement.setAttribute('dir', 'ltr');
+          rtlToggle.innerHTML = '<i class="fas fa-exchange-alt"></i> <span id="rtlText">RTL</span>';
+        }
+        localStorage.setItem('rtlMode', rtlActive ? 'enabled' : 'disabled');
+      }
+      applyRTL(isRTL);
+
+      rtlToggle.addEventListener('click', () => {
+        isRTL = !isRTL;
+        applyRTL(isRTL);
+      });
+
+      // --- Show/Hide Password Logic ---
+      toggleBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-target');
+          const input = document.getElementById(targetId);
+          
+          const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+          input.setAttribute('type', type);
+          
+          // Toggle icon
+          this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        });
+      });
+
+    })();
+  </script>
+
+<script>
+    // --- Added for dynamic active state ---
+    const currentPath = decodeURIComponent(window.location.pathname.split('/').pop()) || 'index.html';
+    document.querySelectorAll('.nav-link, .dropdown-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && href.includes(currentPath)) {
+        link.classList.add('active');
+        const parentLi = link.closest('li');
+        if (parentLi) {
+          const toggle = parentLi.querySelector('.dropdown-toggle');
+          if (toggle) toggle.classList.add('active');
+        }
+      } else {
+        link.classList.remove('active');
+      }
+    });
+    // --- End dynamic active state ---
+</script>
+</body>
+</html>
