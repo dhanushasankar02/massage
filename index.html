@@ -16,37 +16,37 @@
 
     /* LIGHT MODE (default) */
     :root {
-      --bg-body: #fefaf5;
+      --bg-body: #f5f9f7;
       --bg-surface: #ffffff;
       --bg-card: #ffffff;
-      --text-primary: #1e2a2e;
-      --text-secondary: #2c3e2f;
-      --accent: #9b7b5c;
-      --accent-light: #e3cfbc;
-      --border: #e6dfd5;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --text-primary: #122c24;
+      --text-secondary: #4a635a;
+      --accent: #1e6b54;
+      --accent-light: #d8ede4;
+      --border: #dfeae4;
+      --shadow-sm: 0 8px 20px rgba(18, 44, 36, 0.04), 0 2px 6px rgba(18, 44, 36, 0.03);
       --accent-text: #ffffff;
-      --navbar-bg: #fffbf7;
-      --footer-bg: #f2efe9;
-      --link-hover: #7f5e42;
-      --active-link: #9b7b5c;
+      --navbar-bg: #ffffff;
+      --footer-bg: #ebf3ef;
+      --link-hover: #144f3d;
+      --active-link: #1e6b54;
     }
 
     body.dark-mode {
-      --bg-body: #000000;
-      --bg-surface: #121212;
-      --bg-card: #1e1e1e;
-      --text-primary: #ffffff;
-      --text-secondary: #cccccc;
-      --accent: #e0b68b;
-      --accent-light: #8e735b;
-      --border: #3e3e3e;
-      --accent-text: #121212;
-      --navbar-bg: #0a0a0a;
-      --footer-bg: #050505;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
-      --link-hover: #f3cd9b;
-      --active-link: #e0b68b;
+      --bg-body: #0a1411;
+      --bg-surface: #11201b;
+      --bg-card: #182c26;
+      --text-primary: #f0f7f4;
+      --text-secondary: #a3bdae;
+      --accent: #4dd0a8;
+      --accent-light: #1c4d3f;
+      --border: #243e35;
+      --accent-text: #051410;
+      --navbar-bg: #0d1a16;
+      --footer-bg: #070e0c;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.4);
+      --link-hover: #7af2cc;
+      --active-link: #4dd0a8;
     }
 
     body {
@@ -58,6 +58,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+    }
+    p {
+      font-weight: 450;
     }
 
     /* STICKY NAVBAR - one line flex */
@@ -569,7 +576,7 @@
     }
     .section-title {
       font-size: 2.5rem;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text-primary);
       text-align: center;
       margin-bottom: 3rem;
@@ -618,7 +625,7 @@
     }
     .hero-title {
       font-size: 4rem;
-      font-weight: 800;
+      font-weight: 600;
       margin-bottom: 1rem;
       line-height: 1.1;
       text-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -746,6 +753,171 @@
         font-size: 2.5rem;
       }
     }
+
+    /* How It Works Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    .process-step {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .process-step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(18, 44, 36, 0.08);
+    }
+    .process-step-num {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 44px;
+      height: 44px;
+      background: var(--accent);
+      color: var(--accent-text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(30, 107, 84, 0.3);
+    }
+    .process-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin: 1rem 0 1.5rem;
+    }
+    .process-step h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.8rem;
+      color: var(--text-primary);
+    }
+    .process-step p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Testimonials Section */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+    .testimonial-stars {
+      color: #ffb703;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .testimonial-text {
+      font-style: italic;
+      color: var(--text-primary);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .testimonial-author-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-light);
+    }
+    .testimonial-author-info h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.1rem;
+      color: var(--text-primary);
+    }
+    .testimonial-author-info span {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* FAQ Section */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    .faq-question {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    .faq-question:hover {
+      background: rgba(30, 107, 84, 0.03);
+    }
+    .faq-icon {
+      font-size: 0.9rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out, padding 0.3s ease;
+      padding: 0 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: 1.5rem;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
   </style>
   <link rel="stylesheet" href="responsive.css">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -808,7 +980,7 @@
         <p>Whether you need a moment of tranquility at home or a stress-relief break at the office, we bring the spa experience directly to you.</p>
         <a href="services.html" class="btn-outline" style="padding: 0.8rem 1.5rem; text-decoration: none;">Discover Services</a>
       </div>
-      <img src="images/about_img.png" alt="Relaxing Massage" class="split-img">
+      <img src="images/mobile_setup.png" alt="Mobile Massage Table Setup" class="split-img">
     </div>
   </section>
 
@@ -829,6 +1001,33 @@
     <div class="stat-item">
       <h3>100%</h3>
       <p>Satisfaction</p>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="section-bg">
+    <div class="section">
+      <h2 class="section-title">How It Works</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-step-num">1</div>
+          <i class="fas fa-spa process-icon"></i>
+          <h3>Select Your Treatment</h3>
+          <p>Choose from our range of therapeutic table massages, corporate chair programs, or special packages tailored to your needs.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">2</div>
+          <i class="fas fa-calendar-alt process-icon"></i>
+          <h3>Choose Time & Location</h3>
+          <p>Pick a convenient day and time. Enter your home, office, or event location. We'll match you with a certified therapist.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">3</div>
+          <i class="fas fa-heart process-icon"></i>
+          <h3>Relax & Rejuvenate</h3>
+          <p>Your therapist arrives with a professional massage table or chair, organic oils, and ambient music. Just unwind and enjoy.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -882,9 +1081,114 @@
     <div class="section">
       <h2 class="section-title">The Zenith Experience</h2>
       <div class="features-grid">
-        <img src="images/new_hero_bg.png" alt="Spa Environment" class="feature-img" style="border-radius: 20px; box-shadow: var(--shadow-sm);">
-        <img src="images/about_img.png" alt="Massage Details" class="feature-img" style="border-radius: 20px; box-shadow: var(--shadow-sm);">
-        <img src="images/service_one.png" alt="Therapy Stones" class="feature-img" style="border-radius: 20px; box-shadow: var(--shadow-sm);">
+        <div class="gallery-img-container">
+          <img src="images/mobile_setup.png" alt="Professional mobile massage table setup" class="feature-img">
+        </div>
+        <div class="gallery-img-container">
+          <img src="images/service_two.png" alt="Corporate chair massage service in action" class="feature-img">
+        </div>
+        <div class="gallery-img-container">
+          <img src="images/therapy_session.png" alt="Therapist performing an active mobile massage" class="feature-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Reviews Section -->
+  <section id="reviews" class="section-bg">
+    <div class="section">
+      <h2 class="section-title">Client Stories</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Zenith has completely transformed our office vibe. The bi-weekly chair massages keep the team motivated and stress-free. Incredibly professional staff!"</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="images/david_m.png" alt="David M." class="testimonial-author-img">
+            <div class="testimonial-author-info">
+              <h4>David Miller</h4>
+              <span>Corporate Director</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Having a professional massage in the comfort of my own home is pure luxury. The therapist was punctual, polite, and knew exactly how to release my neck tension."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="images/sarah_j.png" alt="Sarah J." class="testimonial-author-img">
+            <div class="testimonial-author-info">
+              <h4>Sarah Jenkins</h4>
+              <span>Regular Client</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"After training, my muscles are extremely tight. The sports massage I got was top-tier. Punctual, clean, and highly therapeutic."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="images/michael_t.png" alt="Michael T." class="testimonial-author-img">
+            <div class="testimonial-author-info">
+              <h4>Michael Torres</h4>
+              <span>Athlete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section-bg-alt">
+    <div class="section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What do I need to provide for a mobile massage?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Our therapists bring everything required for your session, including a professional massage table or chair, fresh linens, organic oils, and soothing background music. You only need to provide a quiet, warm space (approx. 8x10 feet) for the table setup.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are your massage therapists certified?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, absolutely. Every therapist in the Zenith Wellness network is fully licensed, certified by local authorities, insured, and thoroughly background-checked to guarantee a safe, professional experience.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do corporate chair massage events work?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We supply specialized ergonomic massage chairs and certified practitioners to your office or event. Sessions usually last between 10 to 20 minutes per person. Employees remain fully clothed, and no oils are used, making it perfect for the workplace.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What is your cancellation policy?</span>
+            <i class="fas fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We understand plans change. You can cancel or reschedule your session free of charge up to 24 hours before your scheduled appointment time. Cancellations within 24 hours may incur a partial fee.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1127,8 +1431,15 @@
       });
     }
 
-    // Login button demo
-    
+    // FAQ Accordion
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        // Toggle active class on clicked item
+        item.classList.toggle('active');
+      });
+    });
 
     // Set current year in footer
     const yearSpan = document.getElementById('currentYear');

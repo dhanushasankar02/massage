@@ -154,3 +154,47 @@ html[dir="rtl"] .contact-info-item {
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
+
+
+/* Global Typography Consistency Overrides */
+h1, h2, h3, h4, h5, h6, 
+.section-title, .hero-title, .feature-title, .footer-heading,
+.h2-section-title, .h2-hero-card h1, .h2-spec-card h3, .h2-exp-text h2,
+.h2-zig-content h3, .h2-step h3, .h2-pack-card h3, .h2-cta-banner h2, .h2-test-author-info h4 {
+  font-weight: 600 !important;
+}
+p, .hero-subtitle, .feature-desc, .footer-description, .contact-info-item,
+.h2-section-subtitle, .h2-spec-card p, .h2-exp-text p, .h2-zig-content p,
+.h2-step p, .h2-pack-list li, .h2-cta-banner p, .h2-test-text, .h2-test-author-info span {
+  font-weight: 450 !important;
+}
+
+/* Gallery Hover Effects */
+.gallery-img-container {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 4/3;
+}
+.gallery-img-container .feature-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.5s ease !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.gallery-img-container:hover .feature-img {
+  transform: scale(1.06) !important;
+}
+
+/* Card Hover Scale Effects */
+.card, .price-card, .testimonial-card, .technique-card, .team-member, .p-step {
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease !important;
+}
+.card:hover, .price-card:hover, .testimonial-card:hover, .technique-card:hover, .team-member:hover, .p-step:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: 0 15px 35px rgba(18, 44, 36, 0.1) !important;
+}
+

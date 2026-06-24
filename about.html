@@ -16,38 +16,38 @@
     }
 
     :root {
-      --bg-body: #fefaf5;
+      --bg-body: #f5f9f7;
       --bg-surface: #ffffff;
       --bg-card: #ffffff;
-      --text-primary: #1e2a2e;
-      --text-secondary: #2c3e2f;
-      --accent: #9b7b5c;
-      --accent-light: #e3cfbc;
-      --border: #e6dfd5;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --text-primary: #122c24;
+      --text-secondary: #4a635a;
+      --accent: #1e6b54;
+      --accent-light: #d8ede4;
+      --border: #dfeae4;
+      --shadow-sm: 0 8px 20px rgba(18, 44, 36, 0.04), 0 2px 6px rgba(18, 44, 36, 0.03);
       --accent-text: #ffffff;
-      --navbar-bg: #fffbf7;
-      --footer-bg: #f2efe9;
-      --link-hover: #7f5e42;
-      --active-link: #9b7b5c;
+      --navbar-bg: #ffffff;
+      --footer-bg: #ebf3ef;
+      --link-hover: #144f3d;
+      --active-link: #1e6b54;
       --card-radius: 28px;
     }
 
     body.dark-mode {
-      --bg-body: #000000;
-      --bg-surface: #121212;
-      --bg-card: #1e1e1e;
-      --text-primary: #ffffff;
-      --text-secondary: #cccccc;
-      --accent: #e0b68b;
-      --accent-light: #8e735b;
-      --border: #3e3e3e;
-      --accent-text: #121212;
-      --navbar-bg: #0a0a0a;
-      --footer-bg: #050505;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
-      --link-hover: #f3cd9b;
-      --active-link: #e0b68b;
+      --bg-body: #0a1411;
+      --bg-surface: #11201b;
+      --bg-card: #182c26;
+      --text-primary: #f0f7f4;
+      --text-secondary: #a3bdae;
+      --accent: #4dd0a8;
+      --accent-light: #1c4d3f;
+      --border: #243e35;
+      --accent-text: #051410;
+      --navbar-bg: #0d1a16;
+      --footer-bg: #070e0c;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.4);
+      --link-hover: #7af2cc;
+      --active-link: #4dd0a8;
     }
 
     body {
@@ -59,6 +59,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+    }
+    p {
+      font-weight: 450;
     }
 
     /* ---------- ORIGINAL NAVBAR (exactly as first code) ---------- */
@@ -247,7 +254,7 @@
     }
     .section-title {
       font-size: 2.2rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 1rem;
       letter-spacing: -0.01em;
       color: var(--text-primary);
@@ -295,7 +302,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.6)), url('./images/bg3.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.6)), url('images/new_hero_bg.png');
       background-size: cover;
       background-position: center 30%;
       background-attachment: fixed;
@@ -305,7 +312,7 @@
     .hero-content { max-width: 900px; }
     .hero h1 {
       font-size: 3.8rem;
-      font-weight: 800;
+      font-weight: 600;
       margin-bottom: 1.2rem;
       text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
     }
@@ -364,7 +371,7 @@
     }
     .card { flex: 1 1 280px; padding: 2rem 1.8rem; text-align: center; }
     .card i, .technique-card i { font-size: 2.6rem; color: var(--accent); margin-bottom: 1.2rem; }
-    .card h3, .technique-card h3 { font-size: 1.6rem; margin-bottom: 0.75rem; font-weight: 700; }
+    .card h3, .technique-card h3 { font-size: 1.6rem; margin-bottom: 0.75rem; font-weight: 600; }
     .steps {
       display: flex;
       flex-wrap: wrap;
@@ -615,6 +622,47 @@
       section { padding: 3.5rem 1.2rem; }
       .section-title { font-size: 1.8rem; }
     }
+
+    /* Split Layout for About page */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .about-split-img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+      height: 420px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .about-split-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(18, 44, 36, 0.1);
+    }
+    .about-grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 992px) {
+      .about-split {
+        grid-template-columns: 1fr !important;
+        gap: 3rem;
+      }
+      .about-split-img {
+        height: 320px;
+      }
+    }
+    @media (max-width: 640px) {
+      .about-grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
   <link rel="stylesheet" href="responsive.css">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -678,11 +726,71 @@
       <h2 class="section-title">About Zenith Wellness</h2>
       <p style="max-width:800px; margin:1.5rem auto; color:var(--text-secondary);">We bring mindful harmony to your doorstep. With licensed therapists and a passion for holistic healing, we specialize in mobile and chair massage — delivering serenity wherever you are.</p>
     </div>
+  </section>  <section id="mobile-massage" class="bg-light">
+    <div class="container">
+      <h2 class="section-title">On‑Demand Mobile Massage</h2>
+      <p style="text-align: center; max-width: 800px; margin: -1.5rem auto 3rem auto; color: var(--text-secondary);">We bring a premium therapeutic experience directly to you. No travel stress, no parking worries — just pure relaxation.</p>
+      
+      <div class="about-split">
+        <img src="images/mobile_massage.png" alt="Certified therapist setting up a mobile massage table" class="about-split-img">
+        <div class="about-grid-container">
+          <div class="card">
+            <i class="fas fa-home"></i>
+            <h3>Home & Hotel Visits</h3>
+            <p>We arrive with a professional table, fresh linens, organic oils, and soothing background music.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-clock"></i>
+            <h3>Flexible Hours</h3>
+            <p>From 8 AM to 10 PM, 7 days a week. Select same-day booking or secure future spots.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-user-md"></i>
+            <h3>Expert Practitioners</h3>
+            <p>Every therapist is fully licensed, background-checked, and trained in multiple therapies.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Custom Focus</h3>
+            <p>Tell us your tension areas: deep tissue pressure, Swedish strokes, or prenatal relief.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="mobile-massage" class="bg-light"><div class="container"><h2 class="section-title">On‑Demand Mobile Massage</h2><div class="features-grid"><div class="card"><i class="fas fa-home"></i><h3>Home / Hotel Visits</h3><p>Fully equipped table, organic oils — your personal oasis.</p></div><div class="card"><i class="fas fa-clock"></i><h3>Flexible Scheduling</h3><p>Early mornings, late evenings, weekends. Same‑day.</p></div><div class="card"><i class="fas fa-user-md"></i><h3>Licensed </h3><p>Certified in Swedish, deep tissue & sports massage.</p></div><div class="card"><i class="fas fa-heartbeat"></i><h3>Tailored</h3><p>Prenatal, injury recovery, or simply unwind — customized.</p></div></div></div></section>
-
-  <section id="chair-massage" class="bg-warm"><div class="container"><h2 class="section-title">Ergonomic Chair Massage</h2><div class="features-grid"><div class="card"><i class="fas fa-chair"></i><h3>No Oil, No Mess</h3><p>Fully clothed, seated massage for neck, shoulders & back.</p></div><div class="card"><i class="fas fa-building"></i><h3>Corporate Wellness</h3><p>Boost morale and productivity — chair massage breaks.</p></div><div class="card"><i class="fas fa-calendar-week"></i><h3>Event Booking</h3><p>From 2-hour pop-ups to full‑day events. Professional.</p></div><div class="card"><i class="fas fa-hand-peace"></i><h3>10–30 min sessions</h3><p>Perfect for break rooms, health fairs, or private parties.</p></div></div></div></section>
+  <section id="chair-massage" class="bg-warm">
+    <div class="container">
+      <h2 class="section-title">Ergonomic Chair Massage</h2>
+      <p style="text-align: center; max-width: 800px; margin: -1.5rem auto 3rem auto; color: var(--text-secondary);">Bring wellness to your workplace, events, or parties. Instant stress relief with a zero-setup footprint.</p>
+      
+      <div class="about-split">
+        <div class="about-grid-container">
+          <div class="card">
+            <i class="fas fa-chair"></i>
+            <h3>No Oil, No Mess</h3>
+            <p>Clients remain fully clothed. The therapy targets neck, back, shoulders, and arms without oils.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-building"></i>
+            <h3>Corporate Wellness</h3>
+            <p>Boost employee morale, relieve desk strain, and increase workplace productivity.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-calendar-week"></i>
+            <h3>Events & Pop-Ups</h3>
+            <p>Perfect for health fairs, appreciation days, trade shows, or private home gatherings.</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-hand-peace"></i>
+            <h3>Fast & Effective</h3>
+            <p>Flexible 10, 15, or 20-minute sessions that fit easily into busy working days.</p>
+          </div>
+        </div>
+        <img src="images/service_two.png" alt="Professional chair massage session in office workspace" class="about-split-img">
+      </div>
+    </div>
+  </section>
 
   <section id="how-it-works" class="bg-soft"><div class="container"><h2 class="section-title">How It Flows</h2><div class="steps"><div class="step-item"><div class="step-num">1</div><h3>Pick your service</h3><p>Mobile or chair massage, select.</p></div><div class="step-item"><div class="step-num">2</div><h3>Schedule instantly</h3><p>Choose time slot, we confirm.</p></div><div class="step-item"><div class="step-num">3</div><h3>Relax & enjoy</h3><p>Therapist arrives with premium.</p></div><div class="step-item"><div class="step-num">4</div><h3>Follow‑up care</h3><p>Self-care tips & easy rebooking.</p></div></div></div></section>
 
