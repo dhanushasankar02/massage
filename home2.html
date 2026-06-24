@@ -16,37 +16,37 @@
 
     /* LIGHT MODE (default) */
     :root {
-      --bg-body: #fefaf5;
+      --bg-body: #f5f9f7;
       --bg-surface: #ffffff;
       --bg-card: #ffffff;
-      --text-primary: #1e2a2e;
-      --text-secondary: #2c3e2f;
-      --accent: #9b7b5c;
-      --accent-light: #e3cfbc;
-      --border: #e6dfd5;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --text-primary: #122c24;
+      --text-secondary: #4a635a;
+      --accent: #1e6b54;
+      --accent-light: #d8ede4;
+      --border: #dfeae4;
+      --shadow-sm: 0 8px 20px rgba(18, 44, 36, 0.04), 0 2px 6px rgba(18, 44, 36, 0.03);
       --accent-text: #ffffff;
-      --navbar-bg: #fffbf7;
-      --footer-bg: #f2efe9;
-      --link-hover: #7f5e42;
-      --active-link: #9b7b5c;
+      --navbar-bg: #ffffff;
+      --footer-bg: #ebf3ef;
+      --link-hover: #144f3d;
+      --active-link: #1e6b54;
     }
 
     body.dark-mode {
-      --bg-body: #000000;
-      --bg-surface: #121212;
-      --bg-card: #1e1e1e;
-      --text-primary: #ffffff;
-      --text-secondary: #cccccc;
-      --accent: #e0b68b;
-      --accent-light: #8e735b;
-      --border: #3e3e3e;
-      --accent-text: #121212;
-      --navbar-bg: #0a0a0a;
-      --footer-bg: #050505;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
-      --link-hover: #f3cd9b;
-      --active-link: #e0b68b;
+      --bg-body: #0a1411;
+      --bg-surface: #11201b;
+      --bg-card: #182c26;
+      --text-primary: #f0f7f4;
+      --text-secondary: #a3bdae;
+      --accent: #4dd0a8;
+      --accent-light: #1c4d3f;
+      --border: #243e35;
+      --accent-text: #051410;
+      --navbar-bg: #0d1a16;
+      --footer-bg: #070e0c;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.4);
+      --link-hover: #7af2cc;
+      --active-link: #4dd0a8;
     }
 
     body {
@@ -574,35 +574,49 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%);
+      background: linear-gradient(90deg, rgba(10, 26, 20, 0.85) 0%, rgba(10, 26, 20, 0.4) 60%, rgba(10, 26, 20, 0.1) 100%);
     }
-    .h2-hero-card {
+    .h2-hero-content {
       position: relative;
-      background: rgba(245, 249, 247, 0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      padding: 3.5rem;
-      border-radius: 28px;
+      z-index: 1;
       max-width: 650px;
-      color: var(--text-primary);
-      box-shadow: 0 30px 60px rgba(18, 44, 36, 0.12);
+      color: #ffffff;
+      padding: 2rem 0;
     }
-    body.dark-mode .h2-hero-card {
-      background: rgba(17, 32, 27, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-    }
-    .h2-hero-card h1 {
-      font-size: 3.5rem;
+    .h2-hero-content h1 {
+      font-size: 4rem;
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.15;
       margin-bottom: 1.5rem;
+      color: #ffffff;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.35);
     }
-    .h2-hero-card p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      color: var(--text-secondary);
+    .h2-hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .h2-hero .h2-btn {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+    .h2-hero .h2-btn:hover {
+      background: #ffffff;
+      color: var(--accent);
+      border-color: #ffffff;
+    }
+    .h2-hero .h2-btn.outline {
+      background: transparent;
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+    .h2-hero .h2-btn.outline:hover {
+      background: #ffffff;
+      color: var(--accent);
+      border-color: #ffffff;
     }
     .h2-btn {
       display: inline-flex;
@@ -993,7 +1007,7 @@
       }
     }
     @media (max-width: 768px) {
-      .h2-hero-card h1 { font-size: 2.5rem; }
+      .h2-hero-content h1 { font-size: 2.5rem; }
       .h2-section-title { font-size: 2.2rem; }
       .h2-float-badge { display: none; }
     }
@@ -1041,9 +1055,8 @@
 </header>
 
 <main>
-  <!-- 1. Hero Section -->
   <section class="h2-hero">
-    <div class="h2-hero-card">
+    <div class="h2-hero-content">
       <h1>Elevate Your Senses</h1>
       <p>Discover a sanctuary of peace where your mind and body find perfect harmony. Indulge in our tailored wellness experiences designed to restore your natural balance.</p>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap;">

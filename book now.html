@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -839,23 +839,26 @@
     /* Gift a Session */
     .gift-banner {
       padding: 6rem 2rem;
-      background: var(--text-primary);
-      color: var(--bg-body);
+      background: #122c24;
+      color: #f5f9f7;
       text-align: center;
     }
-    .gift-banner h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--bg-body); }
+    .gift-banner h2 { font-size: 2.5rem; margin-bottom: 1rem; color: #f5f9f7; }
     .gift-banner p { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
     .gift-btn {
-      background: var(--bg-body);
-      color: var(--text-primary);
+      background: #f5f9f7;
+      color: #122c24;
       padding: 1rem 2.5rem;
       border-radius: 30px;
       font-weight: 700;
       text-decoration: none;
       display: inline-block;
-      transition: transform 0.3s;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
     }
-    .gift-btn:hover { transform: translateY(-3px); }
+    .gift-btn:hover {
+      transform: translateY(-3px);
+      background: #dfeae4;
+    }
 
     /* Support / Contact details for booking */
     .booking-support {
@@ -905,7 +908,7 @@
 
 <header class="navbar" id="mainNavbar">
   <div class="nav-container">
-    <a href="#" class="logo" id="logoLink">
+    <a href="index.html" class="logo" id="logoLink">
       <span class="logo-mark"><i class="fas fa-leaf"></i></span>
       <span class="logo-text">Zenith</span>
     </a>
@@ -1118,7 +1121,7 @@
     <div class="footer-grid">
       <!-- Column 1: Brand + Logo (identical to navbar) -->
       <div class="footer-brand">
-        <a href="#" class="footer-logo" id="footerLogoLink">
+        <a href="index.html" class="footer-logo" id="footerLogoLink">
           <span class="logo-mark"><i class="fas fa-leaf"></i></span>
           <span class="logo-text">Zenith</span>
         </a>
@@ -1258,12 +1261,7 @@
         navLinks.forEach(link => link.classList.remove('active'));
       });
     }
-    if (footerLogoLink) {
-      footerLogoLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+    if (footerLogoLink) { footerLogoLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'index.html'; }); }
 
     // Home dropdown toggle
     if (homeDropdownToggle) {
@@ -1378,3 +1376,4 @@
 </script>
 </body>
 </html>
+

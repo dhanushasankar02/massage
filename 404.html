@@ -329,7 +329,7 @@
       align-items: center;
       gap: 0.6rem;
       background: white;
-      color: #2c241f;
+      color: var(--text-primary);
       font-weight: 600;
       padding: 0.9rem 2rem;
       border-radius: 50px;
@@ -341,17 +341,17 @@
       border: none;
     }
     .btn-primary {
-      background: #c17b5c;
-      color: white;
-      box-shadow: 0 6px 14px rgba(193,123,92,0.3);
+      background: var(--accent);
+      color: var(--accent-text);
+      box-shadow: 0 6px 14px rgba(30,107,84,0.3);
     }
-    .btn-primary:hover { background: #a56245; transform: translateY(-3px); }
+    .btn-primary:hover { background: var(--link-hover); transform: translateY(-3px); }
     .btn-outline-light {
       background: transparent;
       border: 2px solid white;
       color: white;
     }
-    .btn-outline-light:hover { background: white; color: #2c241f; transform: translateY(-3px); }
+    .btn-outline-light:hover { background: white; color: var(--text-primary); transform: translateY(-3px); }
 
     /* cards & grids */
     .features-grid, .pricing-grid, .testimonial-grid, .techniques-grid {
@@ -631,7 +631,7 @@
 <!-- ========== ORIGINAL NAVBAR (exactly as first code, with all original links and dropdown) ========== -->
 <header class="navbar" id="mainNavbar">
   <div class="nav-container">
-    <a href="#" class="logo" id="logoLink">
+    <a href="index.html" class="logo" id="logoLink">
       <span class="logo-mark"><i class="fas fa-leaf"></i></span>
       <span class="logo-text">Zenith</span>
     </a>
@@ -687,7 +687,7 @@
     <div class="footer-grid">
       <!-- Column 1: Brand + Logo (identical to navbar) -->
       <div class="footer-brand">
-        <a href="#" class="footer-logo" id="footerLogoLink">
+        <a href="index.html" class="footer-logo" id="footerLogoLink">
           <span class="logo-mark"><i class="fas fa-leaf"></i></span>
           <span class="logo-text">Zenith</span>
         </a>
@@ -801,9 +801,9 @@
 
     // Navbar logo and footer logo scroll to top
     const logoLink = document.getElementById('logoLink');
-    if(logoLink) logoLink.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+    if(logoLink) logoLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'index.html'; });
     const footerLogoLink = document.getElementById('footerLogoLink');
-    if(footerLogoLink) footerLogoLink.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+    if(footerLogoLink) footerLogoLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'index.html'; });
 
     // Dark mode
     const darkToggle = document.getElementById('darkModeToggle');
@@ -919,3 +919,4 @@
 </script>
 </body>
 </html>
+

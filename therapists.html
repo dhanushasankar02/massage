@@ -696,6 +696,57 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Zenith Split Redesign styles */
+    .zenith-split {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .zenith-split-img {
+      width: 100%;
+      height: 480px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .zenith-split-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(18, 44, 36, 0.1);
+    }
+    .standard-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .standard-row-card {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      background: var(--bg-surface);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    .standard-row-card:hover {
+      transform: translateY(-5px) scale(1.02) !important;
+      box-shadow: 0 15px 35px rgba(18, 44, 36, 0.1) !important;
+    }
+    @media (max-width: 992px) {
+      .zenith-split {
+        grid-template-columns: 1fr !important;
+        gap: 3rem;
+      }
+      .zenith-split-img {
+        height: 320px;
+      }
+    }
+
     /* Featured Therapists Grid */
     .therapists-team {
       padding: 6rem 2rem;
@@ -899,7 +950,7 @@
     /* Join Our Team */
     .join-team {
       padding: 6rem 2rem;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      background: var(--accent);
       color: var(--accent-text);
       text-align: center;
     }
@@ -910,7 +961,7 @@
     .join-title {
       font-size: 2.5rem;
       margin-bottom: 1rem;
-      color: #fff;
+      color: var(--accent-text);
     }
     .join-text {
       margin-bottom: 2rem;
@@ -986,7 +1037,7 @@
 
 <header class="navbar" id="mainNavbar">
   <div class="nav-container">
-    <a href="#" class="logo" id="logoLink">
+    <a href="index.html" class="logo" id="logoLink">
       <span class="logo-mark"><i class="fas fa-leaf"></i></span>
       <span class="logo-text">Zenith</span>
     </a>
@@ -1032,25 +1083,38 @@
 
   <!-- 2. The Zenith Standard -->
   <section class="zenith-standard">
-    <div class="section-header">
-      <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">The Zenith Standard</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Our rigorous selection process ensures you receive the highest quality of care.</p>
-    </div>
-    <div class="standard-grid">
-      <div class="standard-card">
-        <div class="standard-icon"><i class="fas fa-certificate"></i></div>
-        <h3>Certified Excellence</h3>
-        <p style="margin-top: 1rem; color: var(--text-secondary);">Every therapist holds top-tier national certifications and specialized training in advanced.</p>
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+      <div class="section-header" style="text-align: left; margin-bottom: 3rem; max-width: 800px;">
+        <div class="srv-badge" style="background: var(--accent-light); color: var(--accent); padding: 0.4rem 1rem; border-radius: 50px; display: inline-block; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Our Care Quality</div>
+        <h2 style="font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; color: var(--text-primary);">The Zenith Standard</h2>
+        <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">Our rigorous selection process ensures you receive the highest quality of care. We hire only the top tier of certified, professional, and empathetic massage therapists.</p>
       </div>
-      <div class="standard-card">
-        <div class="standard-icon"><i class="fas fa-shield-alt"></i></div>
-        <h3>Vetted & Verified</h3>
-        <p style="margin-top: 1rem; color: var(--text-secondary);">Comprehensive background checks and extensive practical evaluations before joining our team.</p>
-      </div>
-      <div class="standard-card">
-        <div class="standard-icon"><i class="fas fa-heart"></i></div>
-        <h3>Empathetic Approach</h3>
-        <p style="margin-top: 1rem; color: var(--text-secondary);">Chosen not just for technical skill, but for their genuine empathy and intuitive touch.</p>
+      
+      <div class="zenith-split">
+        <div class="standard-stack">
+          <div class="standard-row-card">
+            <div class="standard-icon" style="font-size: 2.2rem; color: var(--accent); margin-right: 0.5rem; margin-bottom: 0; line-height: 1;"><i class="fas fa-certificate"></i></div>
+            <div>
+              <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Certified Excellence</h3>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5; margin: 0;">Every therapist holds top-tier national certifications and specialized training in advanced therapeutic modalities.</p>
+            </div>
+          </div>
+          <div class="standard-row-card">
+            <div class="standard-icon" style="font-size: 2.2rem; color: var(--accent); margin-right: 0.5rem; margin-bottom: 0; line-height: 1;"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Vetted & Verified</h3>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5; margin: 0;">Comprehensive background checks and extensive practical evaluations before joining our team.</p>
+            </div>
+          </div>
+          <div class="standard-row-card">
+            <div class="standard-icon" style="font-size: 2.2rem; color: var(--accent); margin-right: 0.5rem; margin-bottom: 0; line-height: 1;"><i class="fas fa-heart"></i></div>
+            <div>
+              <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Empathetic Approach</h3>
+              <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5; margin: 0;">Chosen not just for technical skill, but for their genuine empathy and intuitive touch.</p>
+            </div>
+          </div>
+        </div>
+        <img src="images/therapy_session.png" alt="Certified therapist performing a professional massage session" class="zenith-split-img">
       </div>
     </div>
   </section>
@@ -1224,7 +1288,7 @@
     <div class="footer-grid">
       <!-- Column 1: Brand + Logo (identical to navbar) -->
       <div class="footer-brand">
-        <a href="#" class="footer-logo" id="footerLogoLink">
+        <a href="index.html" class="footer-logo" id="footerLogoLink">
           <span class="logo-mark"><i class="fas fa-leaf"></i></span>
           <span class="logo-text">Zenith</span>
         </a>
@@ -1364,12 +1428,7 @@
         navLinks.forEach(link => link.classList.remove('active'));
       });
     }
-    if (footerLogoLink) {
-      footerLogoLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
+    if (footerLogoLink) { footerLogoLink.addEventListener('click', (e) => { e.preventDefault(); window.location.href = 'index.html'; }); }
 
     // Home dropdown toggle
     if (homeDropdownToggle) {
@@ -1504,3 +1563,4 @@
 </script>
 </body>
 </html>
+

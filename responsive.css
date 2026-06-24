@@ -1,175 +1,564 @@
-/* Global Reset for Responsiveness */
+/* ==========================================================================
+   ZENITH WELLNESS - COMPREHENSIVE RESPONSIVE STYLES
+   Optimized for mobile-first and fully compatible with RTL/Dark modes
+   ========================================================================== */
+
+/* 1. Global Reset & Responsiveness Safeguards */
 html, body {
-  overflow-x: clip !important;
-  max-width: 100%;
-  box-sizing: border-box;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 *, *::before, *::after {
-  box-sizing: inherit;
+  box-sizing: border-box !important;
 }
 
+/* Ensure all media formats scale fluids */
 img, video, iframe, canvas, svg {
   max-width: 100% !important;
-  height: auto;
+  height: auto !important;
 }
 
-/* Ensure text stays inside containers */
-p, h1, h2, h3, h4, h5, h6, span, a, div, li {
+/* Text wrap safety */
+p, h1, h2, h3, h4, h5, h6, span, a, div, li, label, input, button, textarea {
   max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
 }
 
-/* Base Responsive Typography and Spacing */
-section, .section {
-  padding: 4rem 2rem !important; /* Equal responsive padding */
+/* 2. Global Button Sizing & Adaptability */
+.btn, .btn-primary, .btn-outline, .icon-btn, .price-book-btn, .h2-btn, .submit-btn, .b-submit, .checkout-btn, .modality-pill {
+  max-width: 100% !important;
+  white-space: normal !important;
+  text-align: center !important;
+  word-wrap: break-word !important;
+}
+
+/* 3. Section Spacing System (Uniform Responsive Spacing) */
+section, 
+.section, 
+.h2-section, 
+.booking-main, 
+.booking-promises, 
+.gift-occasions, 
+.gift-designs, 
+.gift-purchase, 
+.gift-how, 
+.corp-services, 
+.therapists-team, 
+.therapist-testimonials, 
+.social-section, 
+.directory-section, 
+.hours-section, 
+.cta-section {
+  padding: 5rem 2rem !important;
   max-width: 100vw;
 }
 
-/* Prevent overlapping / Ensure flex wraps properly on smaller screens */
-.nav-container, .hero-content, .container, .footer-container {
-  max-width: 100%;
-}
+/* ==========================================================================
+   BREAKPOINTS
+   ========================================================================== */
 
-/* Button sizing */
-.btn, .btn-primary, .btn-outline, .icon-btn, .price-book-btn {
-  max-width: 100%;
-  white-space: normal;
-  text-align: center;
-  word-wrap: break-word;
-}
-
-/* Make sure the navbar menu behaves correctly */
-.nav-menu.active {
-  overflow-y: auto;
-  max-height: 100vh;
-}
-
-/* Breakpoints */
-
-/* 1024px */
+/* --- 1024px (Laptops & Large Tablets) --- */
 @media (max-width: 1024px) {
-  section, .section {
-    padding: 3.5rem 1.8rem !important;
+  section, 
+  .section, 
+  .h2-section, 
+  .booking-main, 
+  .booking-promises, 
+  .gift-occasions, 
+  .gift-designs, 
+  .gift-purchase, 
+  .gift-how, 
+  .corp-services, 
+  .therapists-team, 
+  .therapist-testimonials, 
+  .social-section, 
+  .directory-section, 
+  .hours-section, 
+  .cta-section {
+    padding: 4rem 1.8rem !important;
+  }
+
+  /* Sticky Navbar Collapse */
+  .navbar {
+    padding: 0.7rem 1.2rem !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+  }
+
+  .nav-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hamburger {
+    display: block !important;
+    order: 3 !important;
+    z-index: 1002 !important;
+  }
+
+  .nav-menu {
+    display: flex !important;
+    position: fixed !important;
+    top: 72px !important;
+    right: -100%;
+    width: 78% !important;
+    max-width: 340px !important;
+    height: calc(100vh - 72px) !important;
+    background: var(--navbar-bg) !important;
+    backdrop-filter: blur(8px) !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 2rem 1.8rem !important;
+    transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+    box-shadow: -8px 0 28px rgba(0, 0, 0, 0.25) !important;
+    z-index: 999 !important;
+    border-left: 1px solid var(--border) !important;
+    gap: 2rem !important;
+    overflow-y: auto !important;
+  }
+
+  .nav-menu.active {
+    right: 0 !important;
+  }
+
+  .nav-links {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 1.4rem !important;
+    display: flex !important;
+  }
+
+  .nav-links li {
+    width: 100% !important;
+  }
+
+  .nav-links li a {
+    white-space: normal !important;
+    font-size: 1.1rem !important;
+    display: block !important;
+    width: 100% !important;
+    padding: 0.3rem 0 !important;
+  }
+
+  .dropdown-menu {
+    position: static !important;
+    margin-top: 0.35rem !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    width: 100% !important;
+  }
+
+  .action-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 12px !important;
+    margin-left: 0 !important;
+  }
+
+  .action-buttons .icon-btn,
+  .action-buttons .btn-outline {
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
   }
 }
 
-/* 768px */
+/* --- 768px (Tablets & Mobile Landscape) --- */
 @media (max-width: 768px) {
-  section, .section {
+  section, 
+  .section, 
+  .h2-section, 
+  .booking-main, 
+  .booking-promises, 
+  .gift-occasions, 
+  .gift-designs, 
+  .gift-purchase, 
+  .gift-how, 
+  .corp-services, 
+  .therapists-team, 
+  .therapist-testimonials, 
+  .social-section, 
+  .directory-section, 
+  .hours-section, 
+  .cta-section {
     padding: 3rem 1.5rem !important;
   }
-  
-  .section-title, .hero-title, h1, h2 {
+
+  /* Typography Resizing */
+  .section-title, 
+  .hero-title, 
+  h1, 
+  h2,
+  .h2-section-title {
     font-size: 2.2rem !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
   }
-  
-  h3 {
+
+  h3, .form-title, .hq-info h3 {
     font-size: 1.5rem !important;
   }
-  
-  /* Cards Stack Vertically */
-  .features-grid, .pricing-grid, .testimonial-grid, .techniques-grid, .footer-grid, .split-section, .steps, .stats-container {
+
+  .hero-subtitle, .hero p {
+    font-size: 1.1rem !important;
+  }
+
+  /* Vertical Stacking of Grids & Flex Containers */
+  .features-grid, 
+  .pricing-grid, 
+  .testimonial-grid, 
+  .testimonials-grid, 
+  .techniques-grid, 
+  .footer-grid, 
+  .split-section, 
+  .steps, 
+  .steps-container, 
+  .stats-container, 
+  .process-grid, 
+  .h2-process-grid, 
+  .h2-specialties, 
+  .h2-packages, 
+  .promise-grid, 
+  .about-split, 
+  .zenith-split, 
+  .booking-wrapper, 
+  .why-corp-grid, 
+  .why-stats-row, 
+  .corp-services-container, 
+  .occ-grid, 
+  .team-grid, 
+  .standard-grid, 
+  .standard-stack, 
+  .form-row, 
+  .c-form-row {
     display: flex !important;
     flex-direction: column !important;
     gap: 1.5rem !important;
     width: 100% !important;
   }
 
-  .card, .price-card, .testimonial-card, .technique-card, .step-item, .split-text, .split-img, .stat-item {
+  /* Elements Stretch & Margin Resets */
+  .card, 
+  .feature-card, 
+  .price-card, 
+  .testimonial-card, 
+  .technique-card, 
+  .step-item, 
+  .split-text, 
+  .split-img, 
+  .stat-item, 
+  .process-step, 
+  .h2-step, 
+  .h2-spec-card, 
+  .h2-pack-card, 
+  .promise-item, 
+  .about-split-img, 
+  .zenith-split-img, 
+  .booking-form-box, 
+  .service-options, 
+  .mini-service-card, 
+  .occasions-header, 
+  .occ-card, 
+  .purchase-box, 
+  .design-preview, 
+  .team-member, 
+  .standard-card, 
+  .standard-row-card, 
+  .form-col, 
+  .c-form-col, 
+  .hq-info, 
+  .hq-map, 
+  .dir-item {
     width: 100% !important;
-    margin: 0 !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     flex: none !important;
   }
-  
-  .hero-subtitle, .hero p {
-    font-size: 1.1rem !important;
+
+  /* Footer Bottom Clean Stacking */
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1.2rem !important;
   }
 
-  /* Footer fixes */
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-  
   .legal-links {
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
   }
 }
 
-/* 480px */
-@media (max-width: 480px) {
-  section, .section {
-    padding: 2.5rem 1rem !important;
+/* --- 600px (Extra Layout Optimizations) --- */
+@media (max-width: 600px) {
+  /* Stack standard row cards (icons + text) on therapists standard page */
+  .standard-row-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  /* Fix absolute/fixed headers on Login / Register pages covering forms */
+  .login-header, .register-header {
+    position: static !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1.5rem 1rem 0 1rem !important;
+    width: 100% !important;
+    background: transparent !important;
+    box-shadow: none !important;
   }
   
-  .section-title, .hero-title, h1, h2 {
+  .login-main, .register-main {
+    padding-top: 1rem !important;
+  }
+  
+  .login-card, .register-card {
+    margin-top: 1rem !important;
+  }
+}
+
+/* --- 480px (Standard Mobile Screen) --- */
+@media (max-width: 480px) {
+  section, 
+  .section, 
+  .h2-section, 
+  .booking-main, 
+  .booking-promises, 
+  .gift-occasions, 
+  .gift-designs, 
+  .gift-purchase, 
+  .gift-how, 
+  .corp-services, 
+  .therapists-team, 
+  .therapist-testimonials, 
+  .social-section, 
+  .directory-section, 
+  .hours-section, 
+  .cta-section {
+    padding: 2.5rem 1rem !important;
+  }
+
+  /* Heading typography resizing */
+  .section-title, 
+  .hero-title, 
+  h1, 
+  h2,
+  .h2-section-title {
     font-size: 1.8rem !important;
   }
 
-  .btn, .btn-primary, .btn-outline {
+  /* Logo adjustment to prevent wrap */
+  .logo-text {
+    font-size: 1rem !important;
+  }
+  .logo-mark {
+    width: 35px !important;
+    height: 35px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Stacking all buttons */
+  .btn, 
+  .btn-primary, 
+  .btn-outline, 
+  .icon-btn, 
+  .price-book-btn, 
+  .h2-btn, 
+  .submit-btn, 
+  .b-submit, 
+  .checkout-btn {
     width: 100% !important;
     display: block !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     margin-bottom: 0.8rem !important;
   }
-  
-  .btn-group {
-    flex-direction: column !important;
-    width: 100%;
-  }
 
-  .action-buttons {
+  .btn-group {
     flex-direction: column !important;
     width: 100% !important;
   }
+
+  /* Padding optimizations for compact card layouts */
+  .testimonial-card, 
+  .booking-form-box, 
+  .purchase-box, 
+  .standard-card, 
+  .fc-left, 
+  .fc-right, 
+  .hq-info, 
+  .feature-content, 
+  .process-step, 
+  .h2-spec-card, 
+  .h2-pack-card, 
+  .occ-card {
+    padding: 1.5rem !important;
+  }
+
+  /* Gift card amount selector grid */
+  .amount-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.8rem !important;
+  }
 }
 
-/* 320px */
+/* --- 320px (Compact Mobile Screen) --- */
 @media (max-width: 320px) {
-  section, .section {
+  section, 
+  .section, 
+  .h2-section, 
+  .booking-main, 
+  .booking-promises, 
+  .gift-occasions, 
+  .gift-designs, 
+  .gift-purchase, 
+  .gift-how, 
+  .corp-services, 
+  .therapists-team, 
+  .therapist-testimonials, 
+  .social-section, 
+  .directory-section, 
+  .hours-section, 
+  .cta-section {
     padding: 2rem 0.8rem !important;
   }
-  
-  .hero-title, h1, h2 {
+
+  /* Compact Heading Typography */
+  .hero-title, 
+  h1, 
+  h2 {
     font-size: 1.5rem !important;
   }
-  .section-title {
+  .section-title, .h2-section-title {
     font-size: 1.4rem !important;
+  }
+
+  /* Minimum padding for content area */
+  .testimonial-card, 
+  .booking-form-box, 
+  .purchase-box, 
+  .standard-card, 
+  .fc-left, 
+  .fc-right, 
+  .hq-info, 
+  .feature-content, 
+  .process-step, 
+  .h2-spec-card, 
+  .h2-pack-card, 
+  .occ-card {
+    padding: 1rem !important;
+  }
+
+  /* Stack amount selector into a single column */
+  .amount-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
   }
 }
 
-/* RTL Icon Alignment */
+
+/* ==========================================================================
+   RTL (RIGHT-TO-LEFT) LAYOUT OPTIMIZATIONS
+   ========================================================================== */
+
+/* Flip the drawer slide-out transition from left side in RTL */
+@media (max-width: 1024px) {
+  html[dir="rtl"] .nav-menu {
+    right: auto !important;
+    left: -100% !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border) !important;
+    box-shadow: 8px 0 28px rgba(0, 0, 0, 0.25) !important;
+    transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1) !important;
+  }
+  html[dir="rtl"] .nav-menu.active {
+    left: 0 !important;
+    right: auto !important;
+  }
+}
+
+/* RTL Icon Alignment & Margin Direction Flips */
 html[dir="rtl"] .icon-btn i, 
 html[dir="rtl"] .btn i, 
+html[dir="rtl"] .btn-primary i,
+html[dir="rtl"] .btn-outline i,
 html[dir="rtl"] .footer-links-list a i,
-html[dir="rtl"] .contact-info-item i {
-  margin-left: 8px;
-  margin-right: 0;
-}
-html[dir="rtl"] .contact-info-item {
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+html[dir="rtl"] .contact-info-item i,
+html[dir="rtl"] .dir-item i,
+html[dir="rtl"] .promise-item i {
+  margin-left: 8px !important;
+  margin-right: 0 !important;
 }
 
+/* Mirror icons that point to a specific direction (arrows, chevrons) */
+html[dir="rtl"] .fa-arrow-right,
+html[dir="rtl"] .fa-chevron-right,
+html[dir="rtl"] .fa-arrow-left,
+html[dir="rtl"] .fa-chevron-left {
+  transform: scaleX(-1) !important;
+}
 
-/* Global Typography Consistency Overrides */
+/* RTL text alignment defaults */
+html[dir="rtl"] {
+  text-align: right !important;
+}
+
+/* Keep structural text centering correct */
+html[dir="rtl"] .text-center, 
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .hero-subtitle,
+html[dir="rtl"] .logo,
+html[dir="rtl"] .footer-brand,
+html[dir="rtl"] .cta-section,
+html[dir="rtl"] .hours-section,
+html[dir="rtl"] .promise-item,
+html[dir="rtl"] .process-step,
+html[dir="rtl"] .h2-step,
+html[dir="rtl"] .h2-pack-card,
+html[dir="rtl"] .team-member,
+html[dir="rtl"] .social-section,
+html[dir="rtl"] .occasions-header {
+  text-align: center !important;
+}
+
+/* Ensure forms and inputs align right in RTL */
+html[dir="rtl"] input, 
+html[dir="rtl"] textarea, 
+html[dir="rtl"] select {
+  text-align: right !important;
+}
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY & TRANSITIONS
+   ========================================================================== */
 h1, h2, h3, h4, h5, h6, 
 .section-title, .hero-title, .feature-title, .footer-heading,
 .h2-section-title, .h2-hero-card h1, .h2-spec-card h3, .h2-exp-text h2,
 .h2-zig-content h3, .h2-step h3, .h2-pack-card h3, .h2-cta-banner h2, .h2-test-author-info h4 {
   font-weight: 600 !important;
 }
+
 p, .hero-subtitle, .feature-desc, .footer-description, .contact-info-item,
 .h2-section-subtitle, .h2-spec-card p, .h2-exp-text p, .h2-zig-content p,
 .h2-step p, .h2-pack-list li, .h2-cta-banner p, .h2-test-text, .h2-test-author-info span {
   font-weight: 450 !important;
 }
 
-/* Gallery Hover Effects */
+/* Smooth zoom transition for gallery images */
 .gallery-img-container {
   overflow: hidden;
   border-radius: 20px;
@@ -189,7 +578,7 @@ p, .hero-subtitle, .feature-desc, .footer-description, .contact-info-item,
   transform: scale(1.06) !important;
 }
 
-/* Card Hover Scale Effects */
+/* Smooth scaling and shadow effects for responsive cards */
 .card, .price-card, .testimonial-card, .technique-card, .team-member, .p-step {
   transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease !important;
 }
