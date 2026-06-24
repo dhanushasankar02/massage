@@ -5,7 +5,7 @@
 
 /* 1. Global Reset & Responsiveness Safeguards */
 html, body {
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   max-width: 100% !important;
   width: 100% !important;
   box-sizing: border-box !important;

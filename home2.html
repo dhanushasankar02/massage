@@ -716,12 +716,14 @@
       background: var(--navbar-bg);
     }
     .h2-exp-img-wrapper {
-      flex: 1;
+      flex: 0 0 42%;
       position: relative;
     }
     .h2-exp-img {
-      width: 100%;
-      border-radius: 20px;
+      width: 100% !important;
+      height: 280px !important;
+      object-fit: cover !important;
+      border-radius: 24px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
     .h2-float-badge {
@@ -775,10 +777,11 @@
       flex-direction: row-reverse;
     }
     .h2-zig-img {
-      flex: 1;
-      height: 400px;
-      border-radius: 28px;
-      object-fit: cover;
+      flex: 0 0 420px;
+      width: 420px !important;
+      height: 270px !important;
+      border-radius: 24px;
+      object-fit: cover !important;
       box-shadow: 0 15px 35px rgba(18, 44, 36, 0.08);
       transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
     }
@@ -1002,6 +1005,16 @@
       .h2-experience, .h2-zig-item, .h2-zig-item:nth-child(even) {
         flex-direction: column;
       }
+      .h2-exp-img-wrapper, .h2-zig-img {
+        flex: none !important;
+        width: 100% !important;
+      }
+      .h2-exp-img {
+        height: 280px !important;
+      }
+      .h2-zig-img {
+        height: 250px !important;
+      }
       .h2-pack-card.popular {
         transform: scale(1);
       }
@@ -1010,6 +1023,12 @@
       .h2-hero-content h1 { font-size: 2.5rem; }
       .h2-section-title { font-size: 2.2rem; }
       .h2-float-badge { display: none; }
+      .h2-exp-img {
+        height: 220px !important;
+      }
+      .h2-zig-img {
+        height: 200px !important;
+      }
     }
   </style>
   <link rel="stylesheet" href="responsive.css">
@@ -1020,7 +1039,7 @@
 <header class="navbar" id="mainNavbar">
   <div class="nav-container">
     <a href="#" class="logo" id="logoLink">
-      <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+      <img src="images/favicon.svg" alt="Zenith Logo" class="logo-mark">
       <span class="logo-text">Zenith</span>
     </a>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
@@ -1296,11 +1315,11 @@
       <!-- Column 1: Brand + Logo (identical to navbar) -->
       <div class="footer-brand">
         <a href="#" class="footer-logo" id="footerLogoLink">
-          <span class="logo-mark"><i class="fas fa-leaf"></i></span>
+          <img src="images/favicon.svg" alt="Zenith Logo" class="logo-mark">
           <span class="logo-text">Zenith</span>
         </a>
         <p class="footer-description">
-          Mindful harmony through therapeutic touch. Mobile massage & chair massage specialists bringing relaxation to your doorstep — corporate wellness, events, or private sessions.
+          Mindful harmony through therapeutic touch. Mobile massage & chair massage specialists bringing relaxation to your doorstep â€” corporate wellness, events, or private sessions.
         </p>
         <div class="social-links-footer">
           <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -1340,7 +1359,7 @@
         </div>
         <div class="contact-info-item">
           <i class="fas fa-clock"></i>
-          <span>Mon-Sat: 9am – 8pm | Sun: 10am – 6pm</span>
+          <span>Mon-Sat: 9am â€“ 8pm | Sun: 10am â€“ 6pm</span>
         </div>
       </div>
 
@@ -1354,14 +1373,14 @@
           <li><a href="#wellness"><i class="fas fa-hand-spa"></i> Stress Relief Programs</a></li>
         </ul>
         <div style="margin-top: 1rem; background: rgba(155, 123, 92, 0.12); padding: 0.6rem; border-radius: 16px; font-size: 0.8rem;">
-          <i class="fas fa-chair"></i> <strong>Chair massage for offices:</strong> boost morale & reduce tension — ask about corporate rates.
+          <i class="fas fa-chair"></i> <strong>Chair massage for offices:</strong> boost morale & reduce tension â€” ask about corporate rates.
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="copyright">
-        <i class="far fa-copyright"></i> <span id="currentYear"></span> Zenith Wellness — Mindful Harmony. All rights reserved.
+        <i class="far fa-copyright"></i> <span id="currentYear"></span> Zenith Wellness â€” Mindful Harmony. All rights reserved.
       </div>
       <div class="legal-links">
         <a href="#">Privacy Policy</a>
@@ -1555,4 +1574,5 @@
 </script>
 </body>
 </html>
+
 
