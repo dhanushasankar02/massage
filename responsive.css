@@ -531,8 +531,17 @@ html[dir="rtl"] .h2-step,
 html[dir="rtl"] .h2-pack-card,
 html[dir="rtl"] .team-member,
 html[dir="rtl"] .social-section,
-html[dir="rtl"] .occasions-header {
+html[dir="rtl"] .occasions-header,
+html[dir="rtl"] .login-header-text,
+html[dir="rtl"] .register-header-text,
+html[dir="rtl"] .login-link,
+html[dir="rtl"] .register-link {
   text-align: center !important;
+}
+
+/* Ensure logo elements shift in RTL mode */
+html[dir="rtl"] .logo {
+  direction: rtl !important;
 }
 
 /* Ensure forms and inputs align right in RTL */
